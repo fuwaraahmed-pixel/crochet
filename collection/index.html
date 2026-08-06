@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>সকল কালেকশন — Dremoy Store</title>
+  <meta name="description"
+    content="Dremoy Store-এর সম্পূর্ণ হাতে বোনা ক্রশেট কালেকশন। ব্যাগ চার্ম, কিচেইন, কার ডেকোর ও বিশেষ গিফট বক্স।">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- Scroll Progress Indicator Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+
+  <!-- Custom Glowing Heart Cursor (Desktop Only) -->
+  <div id="customCursor" class="custom-cursor" aria-hidden="true"><i class="bi bi-heart-fill cursor-heart-icon"></i></div>
+
+  <!-- Premium Page Loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content text-center">
+      <svg class="loader-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="loader-yarn-path" d="M 50 15 C 30 15, 15 30, 15 50 C 15 70, 30 85, 50 85 C 70 85, 85 70, 85 50 C 85 30, 70 15, 50 15 Z M 50 25 C 60 25, 65 35, 50 50 C 35 65, 40 75, 50 75 C 60 75, 75 60, 50 50 C 25 40, 40 25, 50 25 Z" />
+        <i class="bi bi-flower1 loader-flower-icon"></i>
+      </svg>
+      <p class="loader-text">ভালোবাসা দিয়ে তৈরি হচ্ছে...</p>
+    </div>
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <i class="bi bi-heart-fill me-1"></i> হাতে বোনা প্রতিটি পিস পরম আদরে তৈরি | ফ্রি গিফট বক্স ও মেমোরেবল কার্ড সহ
+    সারাদেশে হোম ডেলিভারি
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom" aria-label="Main Navigation">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-text d-flex align-items-center gap-2" href="../index.html">
+        <i class="bi bi-flower1 text-primary-color fs-3"></i>
+        <span>Dremoy</span> Store
+      </a>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="মেনু খুলুন">
+        <i class="bi bi-list fs-2 text-dark"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html">হোম</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html#story">আমাদের গল্প</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom active" href="index.html">সকল কালেকশন</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../gallery/index.html">গ্যালারি ও স্মৃতি</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html#reviews">রিভিউ</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html#faq">প্রশ্নোত্তর</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+          <a href="index.html" class="btn btn-primary-custom py-2 px-4 fs-6">
+            কালেকশন দেখুন <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Collection Page Header -->
+  <section class="section-padding bg-main pt-5">
+    <div class="container text-center">
+      <span class="section-label">সম্পূর্ণ ক্যাটালগ</span>
+      <h1 class="section-title fs-1 mb-3">আমাদের সমস্ত হাতে বোনা কালেকশন</h1>
+      <p class="section-subtitle mx-auto mb-4">
+        অর্গানিক কটন সুতো ও কারিগরের ৩+ ঘণ্টার নিবিড় ভালোবাসায় তৈরি প্রতিটি অনন্য পিস।
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+        <button class="btn btn-secondary-custom active py-2 px-4 fs-6">সকল</button>
+        <button class="btn btn-secondary-custom py-2 px-4 fs-6">ব্যাগ এক্সেসরিজ</button>
+        <button class="btn btn-secondary-custom py-2 px-4 fs-6">কিচেইন ও মেমেন্টো</button>
+        <button class="btn btn-secondary-custom py-2 px-4 fs-6">হোম ও কার ডেকোর</button>
+        <button class="btn btn-secondary-custom py-2 px-4 fs-6">স্পেশাল গিফট</button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="container">
+      <div class="row g-4">
+        <!-- Product 1: Cat on Bag -->
+        <div class="col-sm-6 col-lg-3 reveal-fade-up delay-1">
+          <div class="product-card">
+            <div class="product-img-wrapper">
+              <span class="product-badge">সবচেয়ে জনপ্রিয়</span>
+              <button class="product-fav-btn" aria-label="উইশলিস্টে যুক্ত করুন"><i class="bi bi-heart"></i></button>
+              <a href="../product/sleeping-kitty-bag-charm/index.html">
+                <img src="../assets/images/cat-on-bag.jpeg" alt="ঘুমান্ত বিড়াল কটন ব্যাগ চার্ম" class="product-img" loading="lazy">
+              </a>
+              <button class="product-quick-view" data-bs-toggle="modal" data-bs-target="#orderModal" data-product-name="Sleeping Kitty Bag Charm">
+                দ্রুত দেখুন <i class="bi bi-eye ms-1"></i>
+              </button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">ব্যাগ এক্সেসরিজ</span>
+              <h3 class="product-title"><a href="../product/sleeping-kitty-bag-charm/index.html" class="text-dark text-decoration-none">Sleeping Kitty Bag Charm</a></h3>
+              <p class="product-desc">আপনার প্রিয় ব্যাগে কিউট ও স্নিগ্ধ এক নস্টালজিক লুক এনে দেবে এই কিটি চার্ম।</p>
+              <div class="product-price-row">
+                <span class="product-price">৳ ৭৫০</span>
+                <button class="btn btn-primary-custom py-2 px-3 fs-6" data-bs-toggle="modal"
+                  data-bs-target="#orderModal" data-product-name="Sleeping Kitty Bag Charm">
+                  অর্ডার করুন <i class="bi bi-cart-plus ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2: Double Calla Lily Charm -->
+        <div class="col-sm-6 col-lg-3 reveal-fade-up delay-2">
+          <div class="product-card">
+            <div class="product-img-wrapper">
+              <span class="product-badge">সিগনেচার আর্ট</span>
+              <button class="product-fav-btn" aria-label="উইশলিস্টে যুক্ত করুন"><i class="bi bi-heart"></i></button>
+              <a href="../product/double-calla-lily-charm/index.html">
+                <img src="../assets/images/crochet-flower-wall.jpeg" alt="ডাবল ক্যালা লিলি ওয়াল ও কার চার্ম" class="product-img" loading="lazy">
+              </a>
+              <button class="product-quick-view" data-bs-toggle="modal" data-bs-target="#orderModal" data-product-name="Double Calla Lily Charm">
+                দ্রুত দেখুন <i class="bi bi-eye ms-1"></i>
+              </button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">হোম ও কার ডেকোর</span>
+              <h3 class="product-title"><a href="../product/double-calla-lily-charm/index.html" class="text-dark text-decoration-none">Double Calla Lily Charm</a></h3>
+              <p class="product-desc">ঘরের নান্দনিক কোণ কিংবা প্রিয় গাড়ির আয়নায় স্নিগ্ধ ভালোবাসার পরশ।</p>
+              <div class="product-price-row">
+                <span class="product-price">৳ ৯৫০</span>
+                <button class="btn btn-primary-custom py-2 px-3 fs-6" data-bs-toggle="modal"
+                  data-bs-target="#orderModal" data-product-name="Double Calla Lily Charm">
+                  অর্ডার করুন <i class="bi bi-cart-plus ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: Serene Sleeping Kitty Keychain -->
+        <div class="col-sm-6 col-lg-3 reveal-fade-up delay-3">
+          <div class="product-card">
+            <div class="product-img-wrapper">
+              <span class="product-badge">পছন্দের তালিকায় ১ নম্বর</span>
+              <button class="product-fav-btn" aria-label="উইশলিস্টে যুক্ত করুন"><i class="bi bi-heart"></i></button>
+              <a href="../product/serene-sleeping-kitty-keychain/index.html">
+                <img src="../assets/images/sleeping-cat-keychain.jpeg" alt="কিউট স্লিপিং কিটি কিচেইন" class="product-img" loading="lazy">
+              </a>
+              <button class="product-quick-view" data-bs-toggle="modal" data-bs-target="#orderModal" data-product-name="Serene Sleeping Kitty Keychain">
+                দ্রুত দেখুন <i class="bi bi-eye ms-1"></i>
+              </button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">কিচেইন ও মেমেন্টো</span>
+              <h3 class="product-title"><a href="../product/serene-sleeping-kitty-keychain/index.html" class="text-dark text-decoration-none">Serene Sleeping Kitty Keychain</a></h3>
+              <p class="product-desc">প্রতিদিনের চাবির রিংয়ে এক চিলতে মেজাজ ভালো করা কিউট অনুভূতির ছোঁয়া।</p>
+              <div class="product-price-row">
+                <span class="product-price">৳ ৬৫০</span>
+                <button class="btn btn-primary-custom py-2 px-3 fs-6" data-bs-toggle="modal"
+                  data-bs-target="#orderModal" data-product-name="Serene Sleeping Kitty Keychain">
+                  অর্ডার করুন <i class="bi bi-cart-plus ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4: Workshop Edition Calla Pendant -->
+        <div class="col-sm-6 col-lg-3 reveal-fade-up delay-4">
+          <div class="product-card">
+            <div class="product-img-wrapper">
+              <span class="product-badge">মাস্টারপিস</span>
+              <button class="product-fav-btn" aria-label="উইশলিস্টে যুক্ত করুন"><i class="bi bi-heart"></i></button>
+              <a href="../product/workshop-edition-calla-pendant/index.html">
+                <img src="../assets/images/handmade-in-hand.jpeg" alt="আর্টিসানাল ক্যালা লিলি পেড্যান্ট" class="product-img" loading="lazy">
+              </a>
+              <button class="product-quick-view" data-bs-toggle="modal" data-bs-target="#orderModal" data-product-name="Workshop Edition Calla Pendant">
+                দ্রুত দেখুন <i class="bi bi-eye ms-1"></i>
+              </button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">স্পেশাল গিফট</span>
+              <h3 class="product-title"><a href="../product/workshop-edition-calla-pendant/index.html" class="text-dark text-decoration-none">Workshop Edition Calla Pendant</a></h3>
+              <p class="product-desc">বিশেষ মানুষটির বিশেষ দিনের জন্য পরম যত্নে বোনা ধ্রুপদী স্মারক।</p>
+              <div class="product-price-row">
+                <span class="product-price">৳ ১,২০০</span>
+                <button class="btn btn-primary-custom py-2 px-3 fs-6" data-bs-toggle="modal"
+                  data-bs-target="#orderModal" data-product-name="Workshop Edition Calla Pendant">
+                  অর্ডার করুন <i class="bi bi-cart-plus ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Order Modal -->
+  <div class="modal fade modal-custom" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">
+            <i class="bi bi-bag-check text-primary-color me-2"></i> দ্রুত অর্ডার বা প্রশ্ন করুন
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="বন্ধ করুন"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="quickOrderForm">
+            <div class="mb-3">
+              <label for="modalProductName" class="form-label fw-semibold">পছন্দের প্রোডাক্ট</label>
+              <input type="text" class="form-control form-control-custom" id="modalProductName" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="customerName" class="form-label fw-semibold">আপনার নাম *</label>
+              <input type="text" class="form-control form-control-custom" id="customerName" placeholder="যেমন: ফারহানা মেহজাবীন" required>
+            </div>
+            <div class="mb-3">
+              <label for="customerPhone" class="form-label fw-semibold">মোবাইল নম্বর *</label>
+              <input type="tel" class="form-control form-control-custom" id="customerPhone" placeholder="০১৭০০-০০০০০০" required>
+            </div>
+            <div class="mb-3">
+              <label for="customerAddress" class="form-label fw-semibold">পূর্ণাঙ্গ ঠিকানা *</label>
+              <textarea class="form-control form-control-custom" id="customerAddress" rows="2" placeholder="বাড়ি/রোড নম্বর, এলাকা, থানা ও জেলা" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="customerNote" class="form-label fw-semibold">বিশেষ উপহার মেসেজ (ঐচ্ছিক)</label>
+              <input type="text" class="form-control form-control-custom" id="customerNote" placeholder="গিফট কার্ডে কি লেখা থাকবে?">
+            </div>
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary-custom py-3 fs-6">
+                হোয়াটসঅ্যাপে অর্ডার পাঠান <i class="bi bi-whatsapp ms-1"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="toast-custom">
+    <i class="bi bi-check-circle-fill text-success fs-5"></i>
+    <span id="toastText">উইশলিস্টে যুক্ত করা হয়েছে ❤️</span>
+  </div>
+
+  <!-- Back to Top Floating Button -->
+  <button id="backToTopBtn" class="back-to-top-btn" aria-label="উপরে যান">
+    <svg class="top-yarn-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle class="top-yarn-circle" cx="20" cy="20" r="17" />
+    </svg>
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <div class="footer-brand">
+            Dremoy <span>Store</span>
+          </div>
+          <p class="footer-desc">
+            বাংলাদেশের হাতে বোনা প্রিমিয়াম কটন ক্রশেট ব্র্যান্ড। পরম যত্নে বুনে চলা প্রতিটি সেলাইয়ে ভালোবাসার অমলান প্রকাশ।
+          </p>
+          <div class="footer-social d-flex gap-3">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp fs-5"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2 ms-auto">
+          <h4 class="footer-title">দ্রুত লিংক</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">হোম</a></li>
+            <li><a href="../index.html#story">আমাদের গল্প</a></li>
+            <li><a href="index.html">সকল কালেকশন</a></li>
+            <li><a href="../gallery/index.html">গ্যালারি</a></li>
+            <li><a href="../index.html#faq">প্রশ্নোত্তর</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h4 class="footer-title">যোগাযোগ ও সাহায্য</h4>
+          <ul class="footer-links">
+            <li><i class="bi bi-geo-alt me-2"></i> ঢাকা, বাংলাদেশ</li>
+            <li><i class="bi bi-whatsapp me-2"></i> +880 1622536026</li>
+            <li><i class="bi bi-envelope me-2"></i> dremoyit@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Dremoy Store. All rights reserved.</div>
+        <div class="mt-2 mt-md-0">পরম ভালোবাসায় তৈরি হ্যান্ডমেড ক্রশেট গিফটস 🧶</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../assets/js/script.js"></script>
+</body>
+
+</html>

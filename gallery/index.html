@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>গ্যালারি ও স্মৃতি — Dremoy Store</title>
+  <meta name="description"
+    content="ড্রিময় স্টোরের গ্রাহকদের পাঠানো সুন্দর মুহূর্ত, আনবক্সিং হাসি ও কারিগরের হাতের কাজের লাইফস্টাইল গ্যালারি।">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- Scroll Progress Indicator Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+
+  <!-- Custom Glowing Heart Cursor (Desktop Only) -->
+  <div id="customCursor" class="custom-cursor" aria-hidden="true"><i class="bi bi-heart-fill cursor-heart-icon"></i></div>
+
+  <!-- Premium Page Loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content text-center">
+      <svg class="loader-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="loader-yarn-path" d="M 50 15 C 30 15, 15 30, 15 50 C 15 70, 30 85, 50 85 C 70 85, 85 70, 85 50 C 85 30, 70 15, 50 15 Z M 50 25 C 60 25, 65 35, 50 50 C 35 65, 40 75, 50 75 C 60 75, 75 60, 50 50 C 25 40, 40 25, 50 25 Z" />
+        <i class="bi bi-flower1 loader-flower-icon"></i>
+      </svg>
+      <p class="loader-text">ভালোবাসা দিয়ে তৈরি হচ্ছে...</p>
+    </div>
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <i class="bi bi-heart-fill me-1"></i> হাতে বোনা প্রতিটি পিস পরম আদরে তৈরি | ফ্রি গিফট বক্স ও মেমোরেবল কার্ড সহ
+    সারাদেশে হোম ডেলিভারি
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom" aria-label="Main Navigation">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-text d-flex align-items-center gap-2" href="../index.html">
+        <i class="bi bi-flower1 text-primary-color fs-3"></i>
+        <span>Dremoy</span> Store
+      </a>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="মেনু খুলুন">
+        <i class="bi bi-list fs-2 text-dark"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html">হোম</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html#story">আমাদের গল্প</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../collection/index.html">সকল কালেকশন</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom active" href="index.html">গ্যালারি ও স্মৃতি</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html#reviews">রিভিউ</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="../index.html#faq">প্রশ্নোত্তর</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+          <a href="../collection/index.html" class="btn btn-primary-custom py-2 px-4 fs-6">
+            কালেকশন দেখুন <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Gallery Header Section -->
+  <section class="section-padding bg-main pt-5">
+    <div class="container text-center">
+      <span class="section-label">স্মৃতির কোণ</span>
+      <h1 class="section-title fs-1 mb-3">আমাদের গ্যালারি ও গ্রাহকদের অমলান মুহূর্ত</h1>
+      <p class="section-subtitle mx-auto mb-5">
+        প্রিয়জনদের মিষ্টি হাসি, গাড়ি ও ব্যাগের আভিজাত্য এবং আমাদের কারিগরের পরম যত্নে বুননের কিছু স্নিগ্ধ স্মৃতি।
+      </p>
+
+      <!-- Gallery Grid -->
+      <div class="row g-4">
+        <!-- Gallery Item 1 -->
+        <div class="col-md-4 reveal-fade-up delay-1">
+          <div class="lifestyle-card h-100" style="height: 360px;">
+            <img src="../assets/images/cat-on-bag.jpeg" alt="ব্যাগ চার্ম লাইফস্টাইল" class="lifestyle-img" loading="lazy">
+            <div class="lifestyle-overlay">
+              <h3 class="lifestyle-title">ব্যাগের আভিজাত্যে</h3>
+              <p class="lifestyle-desc">গ্রাহকদের পাঠানো স্নিগ্ধ ও কিউট ব্যাগ চার্ম স্ন্যাপ।</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="col-md-4 reveal-fade-up delay-2">
+          <div class="lifestyle-card h-100" style="height: 360px;">
+            <img src="../assets/images/crochet-flower-wall.jpeg" alt="কার ও ওয়াল চার্ম" class="lifestyle-img" loading="lazy">
+            <div class="lifestyle-overlay">
+              <h3 class="lifestyle-title">গাড়ির স্নিগ্ধ আয়নায়</h3>
+              <p class="lifestyle-desc">ক্যালা লিলি চার্মের প্রশান্তিময় পরশ।</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="col-md-4 reveal-fade-up delay-3">
+          <div class="lifestyle-card h-100" style="height: 360px;">
+            <img src="../assets/images/sleeping-cat-keychain.jpeg" alt="কিচেইন স্মারক" class="lifestyle-img" loading="lazy">
+            <div class="lifestyle-overlay">
+              <h3 class="lifestyle-title">প্রিয় চাবির রিং</h3>
+              <p class="lifestyle-desc">প্রতিদিনের সঙ্গী স্লিপিং কিটি স্মারক।</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 4 -->
+        <div class="col-md-6 reveal-fade-up delay-1">
+          <div class="lifestyle-card h-100" style="height: 360px;">
+            <img src="../assets/images/handmade-in-hand.jpeg" alt="কারিগরের হাতের ছোঁয়া" class="lifestyle-img" loading="lazy">
+            <div class="lifestyle-overlay">
+              <h3 class="lifestyle-title">৩+ ঘণ্টার মেকিং প্রসেস</h3>
+              <p class="lifestyle-desc">প্রতিটি সুতোর প্যাঁচে কারিগরের সময় ও একাগ্রতা।</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 5 -->
+        <div class="col-md-6 reveal-fade-up delay-2">
+          <div class="lifestyle-card h-100" style="height: 360px;">
+            <img src="../assets/images/hero-crochet-flower.jpeg" alt="গিফট বক্স প্যাকেজিং" class="lifestyle-img" loading="lazy">
+            <div class="lifestyle-overlay">
+              <h3 class="lifestyle-title">প্রিমিয়াম গিফট প্যাকেজিং</h3>
+              <p class="lifestyle-desc">হাতে লেখা কিপসেক কার্ডসহ বিশেষ মোড়ক।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="cta" class="cta-section section-padding">
+    <div class="container">
+      <div class="cta-card reveal-fade-up">
+        <div class="cta-bg-glow cta-bg-glow-1"></div>
+        <div class="cta-bg-glow cta-bg-glow-2"></div>
+        <div class="cta-gift-illustration mb-3">
+          <div class="cta-gift-circle">
+            <i class="bi bi-box2-heart-fill"></i>
+          </div>
+        </div>
+        <div class="cta-badge mb-3">
+          <i class="bi bi-gift-fill me-1"></i> সীমিত স্টক স্মল-ব্যাচ কারুশিল্প | মেকিং মোমেন্টস মেমোরেবল
+        </div>
+        <h2 class="cta-title section-title fs-1 mb-3">
+          আজই প্রিয় মানুষের মুখে ফুটুক এক চিলতে অমলান হাসি
+        </h2>
+        <p class="cta-subtitle section-subtitle mx-auto mb-4">
+          সাধারণ প্লাস্টিক নয়, প্রিয়জনের হাতে তুলে দিন হাতে বোনা দীর্ঘস্থায়ী ভালোবাসার চিহ্ন।
+        </p>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
+          <a href="../collection/index.html" class="btn-primary-custom btn-cta-primary">
+            কাঙ্ক্ষিত উপহার অর্ডার করুন <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+          <a href="https://wa.me/8801622536026?text=Hello%20Dremoy%20Store!%20I%20want%20to%20know%20more%20about%20your%20crochet%20gifts."
+            target="_blank" class="btn-whatsapp-custom btn-cta-whatsapp">
+            <i class="bi bi-whatsapp fs-5"></i> হোয়াটসঅ্যাপে সরাসরি মেসেজ দিন
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal for Gallery Images -->
+  <div id="galleryLightbox" class="lightbox-modal" tabindex="-1" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-dialog">
+      <button class="lightbox-close" aria-label="বন্ধ করুন"><i class="bi bi-x-lg"></i></button>
+      <button class="lightbox-prev" aria-label="পূর্ববর্তী"><i class="bi bi-chevron-left"></i></button>
+      <button class="lightbox-next" aria-label="পরবর্তী"><i class="bi bi-chevron-right"></i></button>
+      <div class="lightbox-content">
+        <img id="lightboxImg" src="" alt="Gallery Image" class="lightbox-img">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Floating Button -->
+  <button id="backToTopBtn" class="back-to-top-btn" aria-label="উপরে যান">
+    <svg class="top-yarn-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle class="top-yarn-circle" cx="20" cy="20" r="17" />
+    </svg>
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <div class="footer-brand">
+            Dremoy <span>Store</span>
+          </div>
+          <p class="footer-desc">
+            বাংলাদেশের হাতে বোনা প্রিমিয়াম কটন ক্রশেট ব্র্যান্ড। পরম যত্নে বুনে চলা প্রতিটি সেলাইয়ে ভালোবাসার অমলান প্রকাশ।
+          </p>
+          <div class="footer-social d-flex gap-3">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp fs-5"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2 ms-auto">
+          <h4 class="footer-title">দ্রুত লিংক</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">হোম</a></li>
+            <li><a href="../index.html#story">আমাদের গল্প</a></li>
+            <li><a href="../collection/index.html">সকল কালেকশন</a></li>
+            <li><a href="index.html">গ্যালারি</a></li>
+            <li><a href="../index.html#faq">প্রশ্নোত্তর</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h4 class="footer-title">যোগাযোগ ও সাহায্য</h4>
+          <ul class="footer-links">
+            <li><i class="bi bi-geo-alt me-2"></i> ঢাকা, বাংলাদেশ</li>
+            <li><i class="bi bi-whatsapp me-2"></i> +880 1622536026</li>
+            <li><i class="bi bi-envelope me-2"></i> dremoyit@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Dremoy Store. All rights reserved.</div>
+        <div class="mt-2 mt-md-0">পরম ভালোবাসায় তৈরি হ্যান্ডমেড ক্রশেট গিফটস 🧶</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../assets/js/script.js"></script>
+</body>
+
+</html>
