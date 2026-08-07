@@ -2868,8 +2868,9 @@ button, .btn, a.btn-primary-custom, a.btn-secondary-custom, a.btn-whatsapp-custo
 .reveal-fade-up,
 .reveal-fade-left,
 .reveal-fade-right {
-  opacity: 0;
-  will-change: transform, opacity;
+  opacity: 1 !important;
+  transform: none !important;
+  will-change: auto;
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -3646,9 +3647,9 @@ button, .btn, a.btn-primary-custom, a.btn-secondary-custom, a.btn-whatsapp-custo
 
 /* 10. Scroll Reveal — Single Fire Observer with Scale In */
 .reveal-scale-in {
-  opacity: 0;
-  transform: scale(0.92);
-  will-change: transform, opacity;
+  opacity: 1 !important;
+  transform: none !important;
+  will-change: auto;
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -4042,3 +4043,762 @@ body::before {
   color: var(--text-dark);
   margin-bottom: 8px;
 }
+
+/* ==========================================================================
+   Ultra-Luxury Boutique Editorial Unboxing Showcase Styling
+   ========================================================================== */
+.luxury-unboxing-section {
+  background: radial-gradient(circle at 50% 0%, #FFFDFB 0%, #FFF5EE 60%, #FFF0EA 100%);
+  border-top: 1px solid rgba(200, 157, 108, 0.2);
+  border-bottom: 1px solid rgba(200, 157, 108, 0.2);
+}
+
+.luxury-unboxing-bg-glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(200, 157, 108, 0.15) 0%, rgba(217, 83, 56, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.text-gold {
+  color: #C89D6C !important;
+}
+
+.text-rose {
+  color: #D95338 !important;
+}
+
+.luxury-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  border-radius: 30px;
+  background: rgba(200, 157, 108, 0.1);
+  border: 1px solid rgba(200, 157, 108, 0.3);
+  color: #8C6A3C;
+  font-family: var(--font-bangla);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.luxury-title-gold {
+  font-family: 'Playfair Display', Georgia, var(--font-bangla);
+  font-weight: 800;
+  color: #2C221E;
+}
+
+/* Packaging Image Card */
+.luxury-packaging-image-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1.5px solid #E8D7C8;
+  box-shadow: 0 16px 45px rgba(44, 34, 30, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-packaging-image-card:hover {
+  transform: translateY(-6px);
+  border-color: #D95338;
+  box-shadow: 0 20px 50px rgba(217, 83, 56, 0.16);
+}
+
+.luxury-pack-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.packaging-glass-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 14, 12, 0.88) 100%);
+  backdrop-filter: blur(4px);
+}
+
+.badge-luxury-gold {
+  display: inline-block;
+  background: linear-gradient(135deg, #D4AF37 0%, #C89D6C 100%);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(200, 157, 108, 0.4);
+}
+
+/* Luxury Feature Pill Cards */
+.luxury-feature-pill-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E8D7C8;
+  border-radius: 20px;
+  padding: 26px 22px;
+  box-shadow: 0 8px 24px rgba(44, 34, 30, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
+}
+
+.luxury-feature-pill-card:hover {
+  transform: translateY(-6px);
+  background: #FFFFFF;
+  border-color: #D95338;
+  box-shadow: 0 16px 36px rgba(217, 83, 56, 0.14);
+}
+
+.luxury-pillar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.pillar-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(200, 157, 108, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  transition: background-color 0.3s ease;
+}
+
+.luxury-feature-pill-card:hover .pillar-icon-wrap {
+  background: rgba(217, 83, 56, 0.12);
+}
+
+.pillar-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #C89D6C;
+  transition: color 0.3s ease;
+}
+
+.luxury-feature-pill-card:hover .pillar-number {
+  color: #D95338;
+}
+
+.pillar-title {
+  font-family: var(--font-bangla);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #1E1410;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.pillar-desc {
+  font-family: var(--font-bangla);
+  font-size: 0.9rem;
+  color: #4A3A33;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Studio Container Card */
+.luxury-note-studio-card {
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 40px;
+  border: 1px solid rgba(200, 157, 108, 0.3);
+  box-shadow: 0 20px 60px rgba(44, 34, 30, 0.07);
+}
+
+.studio-badge-tag {
+  background: rgba(217, 83, 56, 0.08);
+  color: #D95338;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+
+.studio-form-title {
+  font-family: var(--font-bangla);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #2C221E;
+}
+
+.studio-form-desc {
+  font-family: var(--font-bangla);
+  font-size: 0.9rem;
+}
+
+.luxury-label {
+  font-family: var(--font-bangla);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #4A3A33;
+}
+
+.luxury-input {
+  border: 1px solid #E6D8CE;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-family: var(--font-bangla);
+  font-size: 0.95rem;
+  background-color: #FAF6F3;
+  transition: all 0.25s ease;
+}
+
+.luxury-input:focus {
+  background-color: #FFFFFF;
+  border-color: #C89D6C;
+  box-shadow: 0 0 0 4px rgba(200, 157, 108, 0.18);
+}
+
+/* Ultra-Luxury Parchment Card */
+.luxury-parchment-card {
+  background: linear-gradient(135deg, #FFFDF8 0%, #FAF3E6 100%);
+  border: 2px solid #D6BC96;
+  border-radius: 24px;
+  padding: 36px 30px;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(184, 147, 105, 0.18), inset 0 0 50px rgba(245, 230, 205, 0.5);
+  overflow: visible;
+}
+
+.luxury-3d-wax-seal {
+  position: absolute;
+  top: -18px;
+  right: 28px;
+  width: 54px;
+  height: 54px;
+  background: radial-gradient(circle at 35% 35%, #E65A40 0%, #AD2F1A 70%, #7A190A 100%);
+  border-radius: 50%;
+  color: #FFFDF8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  box-shadow: 0 8px 22px rgba(122, 25, 10, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+  border: 2.5px solid #FFC4B8;
+  animation: sealPulse 3s infinite ease-in-out;
+  z-index: 15;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.parchment-inner {
+  border: 1px dashed rgba(200, 157, 108, 0.5);
+  padding: 24px 20px;
+  border-radius: 12px;
+}
+
+.parchment-brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8C6E4A;
+  border-bottom: 1px solid rgba(200, 157, 108, 0.3);
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+}
+
+.parchment-crest {
+  font-size: 1.1rem;
+  color: #D95338;
+}
+
+.parchment-content-body {
+  min-height: 140px;
+}
+
+.parchment-recipient {
+  font-family: var(--font-bangla);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #382A23;
+  margin-bottom: 14px;
+}
+
+.parchment-message {
+  font-family: 'Playfair Display', Georgia, var(--font-bangla);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: #4A3A31;
+  font-style: italic;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 20px;
+}
+
+.parchment-sender {
+  font-family: var(--font-bangla);
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-align: right;
+  color: #D95338;
+}
+
+.parchment-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid rgba(200, 157, 108, 0.3);
+  padding-top: 14px;
+  margin-top: 20px;
+}
+
+.gold-dots {
+  color: #C89D6C;
+  font-size: 0.75rem;
+}
+
+.footer-note-text {
+  font-size: 0.76rem;
+  color: #8C7365;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@media (max-width: 767.98px) {
+  .luxury-note-studio-card {
+    padding: 20px 16px;
+  }
+  .luxury-parchment-card {
+    padding: 20px 16px;
+  }
+  .luxury-pack-img {
+    height: 280px;
+  }
+}
+
+/* ==========================================================================
+   Trust Stats Bar & Enhanced Social Proof Reviews Section (Ultra Premium)
+   ========================================================================== */
+.luxury-reviews-bg {
+  background: linear-gradient(180deg, #FAF8F5 0%, #FFFDF9 50%, #FAF6F0 100%);
+  position: relative;
+  border-top: 1px solid rgba(217, 83, 56, 0.08);
+  border-bottom: 1px solid rgba(217, 83, 56, 0.08);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #1A1A1A 0%, #D95338 50%, #B83A22 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.trust-stats-bar {
+  background: rgba(255, 253, 249, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(217, 83, 56, 0.18);
+  box-shadow: 0 15px 35px rgba(217, 83, 56, 0.07);
+  border-radius: 24px;
+  padding: 28px 24px;
+}
+
+.stat-box {
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 10px 15px;
+}
+
+@media (max-width: 767.98px) {
+  .stat-box {
+    border-right: none;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+  }
+  .stat-box.border-0 {
+    border-bottom: none;
+  }
+}
+
+.stat-number {
+  display: block;
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Customer Photo Showcase Cards */
+.review-photo-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 230px;
+  border: 2px solid #ffffff;
+}
+
+.review-photo-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(217, 83, 56, 0.22);
+}
+
+.review-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.review-photo-card:hover .review-photo-img {
+  transform: scale(1.1);
+}
+
+.photo-overlay-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 10, 8, 0.9) 100%);
+  padding: 22px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+.photo-author {
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.photo-tag {
+  font-size: 0.73rem;
+  color: #F8A596;
+}
+
+/* Review Filter Buttons */
+.btn-filter {
+  background: #ffffff;
+  color: #555555;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: 7px 20px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.btn-filter.active, .btn-filter:hover {
+  background: linear-gradient(135deg, #D95338 0%, #B83A22 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(217, 83, 56, 0.3);
+}
+
+/* Ultra Premium Review Cards */
+.review-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(217, 83, 56, 0.12);
+  border-radius: 20px;
+  padding: 26px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(217, 83, 56, 0.12);
+  border-color: rgba(217, 83, 56, 0.3);
+}
+
+.review-stars {
+  color: #F39C12;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+}
+
+.verified-badge {
+  background: rgba(46, 204, 113, 0.12);
+  color: #27AE60;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 30px;
+}
+
+.review-text {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 0.95rem;
+  color: #4A4A4A;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #D95338 0%, #F8A596 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(217, 83, 56, 0.25);
+}
+
+/* ==========================================================================
+   Lifestyle & Shop The Look Gallery Section (Ultra Luxury Edition)
+   ========================================================================== */
+.lifestyle-polaroid-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(217, 83, 56, 0.12);
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lifestyle-polaroid-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(217, 83, 56, 0.16);
+  border-color: rgba(217, 83, 56, 0.28);
+}
+
+.polaroid-img-wrap {
+  border-radius: 18px;
+  overflow: hidden;
+  height: 250px;
+}
+
+.polaroid-img-wrap .lifestyle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.lifestyle-polaroid-card:hover .polaroid-img-wrap .lifestyle-img {
+  transform: scale(1.08);
+}
+
+/* Hotspot Pulsing Pin */
+.lifestyle-hotspot-pin {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: rgba(217, 83, 56, 0.9);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(217, 83, 56, 0.7);
+  animation: pulseHotspot 2s infinite;
+  z-index: 3;
+}
+
+@keyframes pulseHotspot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 83, 56, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(217, 83, 56, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 83, 56, 0);
+  }
+}
+
+.polaroid-tag-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(20, 10, 8, 0.75);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  letter-spacing: 0.02em;
+}
+
+.polaroid-content {
+  padding: 18px 8px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.polaroid-title {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+
+.polaroid-desc {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 0.88rem;
+  color: #666666;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.shop-look-price {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #D95338;
+}
+
+/* ==========================================================================
+   Easy Order Process & 100% Risk-Free Guarantee Section (Ultra Luxury)
+   ========================================================================== */
+.order-process-section {
+  background: #FFFDF9;
+  border-top: 1px solid rgba(217, 83, 56, 0.08);
+}
+
+.luxury-step-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(217, 83, 56, 0.12);
+  border-radius: 24px;
+  padding: 35px 28px;
+  position: relative;
+  height: 100%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+
+.luxury-step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(217, 83, 56, 0.14);
+  border-color: rgba(217, 83, 56, 0.3);
+}
+
+.luxury-step-card.highlight-step {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF8F6 100%);
+  border-color: rgba(217, 83, 56, 0.28);
+}
+
+.step-badge {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #D95338;
+  background: rgba(217, 83, 56, 0.08);
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+.step-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #D95338 0%, #F8A596 100%);
+  color: #FFFFFF;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(217, 83, 56, 0.25);
+}
+
+.step-title {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 12px;
+}
+
+.step-desc {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 0.92rem;
+  color: #555555;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* Luxury Guarantee Callout Banner */
+.luxury-guarantee-banner {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A1713 50%, #3D1C16 100%);
+  border: 1px solid rgba(217, 83, 56, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-guarantee-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(217, 83, 56, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.guarantee-shield-icon {
+  font-size: 3.5rem;
+  color: #F8A596;
+  text-shadow: 0 4px 20px rgba(217, 83, 56, 0.4);
+}
+
+.guarantee-title {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+}
+
+.guarantee-desc {
+  font-family: var(--font-bangla), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+

@@ -106,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. IntersectionObserver for Smooth Scroll Reveal Animations (300-700ms)
   const revealElements = document.querySelectorAll('.reveal-fade-up, .reveal-fade-left, .reveal-fade-right');
 
+  const revealAll = () => {
+    revealElements.forEach(el => el.classList.add('revealed'));
+  };
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
@@ -116,14 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, {
       root: null,
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px 50px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+    
+    // Safety check: force reveal after 1.2s in case observer delays
+    setTimeout(revealAll, 1200);
   } else {
-    // Fallback if IntersectionObserver isn't supported
-    revealElements.forEach(el => el.classList.add('revealed'));
+    revealAll();
   }
 
   // 3. Button Ripple Effect Micro-Interaction
@@ -583,9 +589,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Premium Page Loader (< 1.5s max duration)
   const pageLoader = document.getElementById('pageLoader');
   if (pageLoader) {
-    setTimeout(() => {
+    const hideLoader = () => {
       pageLoader.classList.add('fade-out');
-    }, 1100);
+      setTimeout(() => {
+        pageLoader.style.display = 'none';
+      }, 500);
+    };
+
+    if (document.readyState === 'complete') {
+      setTimeout(hideLoader, 300);
+    } else {
+      window.addEventListener('load', hideLoader);
+      setTimeout(hideLoader, 1000); // Safety fallback
+    }
   }
 
   // 2. Luxury Page Transition (Soft Fade & Slight Blur on Link Navigation)
@@ -694,4 +710,181 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 800);
     });
   }
+
+  // Live Gift Note Simulator Logic
+  const giftRecipientInput = document.getElementById('giftRecipientInput');
+  const giftMessageInput = document.getElementById('giftMessageInput');
+  const giftSenderInput = document.getElementById('giftSenderInput');
+
+  const previewRecipient = document.getElementById('previewRecipient');
+  const previewMessage = document.getElementById('previewMessage');
+  const previewSender = document.getElementById('previewSender');
+
+  if (giftRecipientInput && giftMessageInput && giftSenderInput && previewRecipient && previewMessage && previewSender) {
+    giftRecipientInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      previewRecipient.textContent = val ? `${val},` : 'প্রিয় প্রিয়জন,';
+    });
+
+    giftMessageInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      previewMessage.textContent = val ? `"${val}"` : '"এখানে আপনার বিশেষ মেসেজটি সরাসরি ফুটে উঠবে..."';
+    });
+
+    giftSenderInput.addEventListener('input', (e) => {
+      const val = e.target.value.trim();
+      previewSender.textContent = val ? `ইতি — ${val}` : 'ইতি — আপনার নাম';
+    });
+  }
+
+  // 12. Review Section: Filter Tabs & Live Search Logic
+  const filterBtns = document.querySelectorAll('.btn-filter');
+  const reviewItems = document.querySelectorAll('.review-item');
+  const searchReviewInput = document.getElementById('searchReviewInput');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      reviewItems.forEach(item => {
+        if (filter === 'all') {
+          item.style.display = 'block';
+        } else if (filter === 'with-photo') {
+          const hasPhoto = item.getAttribute('data-has-photo') === 'true';
+          item.style.display = hasPhoto ? 'block' : 'none';
+        } else if (filter === '5-star') {
+          const stars = item.getAttribute('data-stars');
+          item.style.display = stars === '5' ? 'block' : 'none';
+        }
+      });
+    });
+  });
+
+  if (searchReviewInput) {
+    searchReviewInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      reviewItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  }
+
+  // 13. Write Review Modal Interactive Star Selection & Submit
+  const starIcons = document.querySelectorAll('#starRatingSelect i');
+  const selectedStarValue = document.getElementById('selectedStarValue');
+
+  if (starIcons.length && selectedStarValue) {
+    starIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const val = parseInt(icon.getAttribute('data-val'));
+        selectedStarValue.value = val;
+        starIcons.forEach((s, idx) => {
+          if (idx < val) {
+            s.classList.remove('bi-star');
+            s.classList.add('bi-star-fill');
+          } else {
+            s.classList.remove('bi-star-fill');
+            s.classList.add('bi-star');
+          }
+        });
+      });
+    });
+  }
+
+  const customerReviewForm = document.getElementById('customerReviewForm');
+  if (customerReviewForm) {
+    customerReviewForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const author = document.getElementById('reviewAuthorName').value.trim();
+      const location = document.getElementById('reviewLocation').value.trim();
+      const content = document.getElementById('reviewTextContent').value.trim();
+      const stars = selectedStarValue.value;
+      const photoInput = document.getElementById('reviewPhotoInput');
+
+      let photoUrl = '';
+      if (photoInput && photoInput.files && photoInput.files[0]) {
+        photoUrl = URL.createObjectURL(photoInput.files[0]);
+      }
+
+      // Generate HTML for new review
+      const firstLetter = author ? author.charAt(0) : 'ক';
+      const reviewsContainer = document.getElementById('reviewsContainer');
+
+      const reviewCol = document.createElement('div');
+      reviewCol.className = 'col-md-4 reveal-fade-up revealed review-item';
+      reviewCol.setAttribute('data-stars', stars);
+      reviewCol.setAttribute('data-has-photo', photoUrl ? 'true' : 'false');
+
+      let starHtml = '';
+      for (let i = 0; i < 5; i++) {
+        starHtml += i < stars ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star"></i>';
+      }
+
+      let photoHtml = photoUrl ? `<div class="review-inline-photo mb-3"><img src="${photoUrl}" alt="কাস্টমার ফটো" class="rounded shadow-sm" style="height: 60px; width: 60px; object-fit: cover;"></div>` : '';
+
+      reviewCol.innerHTML = `
+        <div class="review-card">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="review-stars">${starHtml}</div>
+              <span class="verified-badge"><i class="bi bi-patch-check-fill me-1"></i> ভেরিফাইড বায়ার</span>
+            </div>
+            <p class="review-text">"${content}"</p>
+            ${photoHtml}
+          </div>
+          <div class="review-author">
+            <div class="author-avatar">${firstLetter}</div>
+            <div>
+              <div class="author-name">${author}</div>
+              <div class="author-location"><i class="bi bi-geo-alt me-1 text-primary-color"></i> ${location}</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (reviewsContainer) {
+        reviewsContainer.prepend(reviewCol);
+      }
+
+      // Hide Modal
+      const modalEl = document.getElementById('writeReviewModal');
+      if (modalEl) {
+        const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+        modalInstance.hide();
+      }
+
+      // Show Toast Notification
+      if (toast && toastText) {
+        toastText.textContent = 'আপনার পর্যালোচনাটি সফলভাবে যুক্ত করা হয়েছে! অসংখ্য ধন্যবাদ ❤️';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 4000);
+      }
+
+      customerReviewForm.reset();
+    });
+  }
+
+  // 14. Lifestyle & Shop The Look Gallery Filter Logic
+  const galleryFilterBtns = document.querySelectorAll('[data-gallery-filter]');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  galleryFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      galleryFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-gallery-filter');
+      galleryItems.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        if (filter === 'all' || filter === cat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
 });
