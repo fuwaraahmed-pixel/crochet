@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অর্ডার কনফার্মেশন — Dremoy Store</title>
+  <meta name="description" content="Dremoy Store — আপনার অর্ডার সফলভাবে নিশ্চিত করা হয়েছে।">
+
+  <!-- Meta Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="canonical" href="https://gift.dremoy.com/pages/success.html">
+  <meta name="theme-color" content="#D95338">
+
+  <!-- Bootstrap 5.3 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <i class="bi bi-heart-fill me-1"></i> আমাদের সাথে থাকার জন্য ধন্যবাদ!
+  </div>
+
+  <section class="section-padding bg-main min-vh-100 d-flex align-items-center">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-lg rounded-4 p-5 bg-white">
+            <div class="mb-4">
+              <div class="d-inline-flex align-items-center justify-content-center bg-success text-white rounded-circle" style="width: 80px; height: 80px;">
+                <i class="bi bi-check-lg fs-1"></i>
+              </div>
+            </div>
+
+            <h1 class="section-title fs-2 mb-3">অর্ডারটি সফলভাবে গৃহীত হয়েছে! ❤️</h1>
+            <p class="section-subtitle mx-auto mb-4">
+              আপনার অর্ডারের ট্র্যাকিং আইডি ও তথ্য সংরক্ষণ করুন। আমাদের প্রতিনিধি শিগগিরই আপনার সাথে যোগাযোগ করবে।
+            </p>
+
+            <div class="bg-light rounded-3 p-3 mb-4 text-start">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">ট্র্যাকিং আইডি:</span>
+                <strong id="successTrackingId" class="text-primary fs-5">DRM000000</strong>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">অর্ডার আইডি:</span>
+                <strong id="successOrderId">ORD-000000</strong>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted">মোট প্রদেয় মূল্য:</span>
+                <strong id="successTotal">৳০</strong>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+              <a id="trackLinkBtn" href="track.html" class="btn btn-primary-custom py-3 px-4">
+                অর্ডার ট্র্যাক করুন <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+              <a href="../index.html" class="btn btn-secondary-custom py-3 px-4">
+                হোমপেজে ফিরে যান <i class="bi bi-house ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const trackingId = urlParams.get('id') || 'DRM000001';
+    const orderId = urlParams.get('orderId') || 'ORD-100001';
+    const total = urlParams.get('total') || '0';
+
+    document.getElementById('successTrackingId').textContent = trackingId;
+    document.getElementById('successOrderId').textContent = orderId;
+    document.getElementById('successTotal').textContent = '৳' + total;
+    document.getElementById('trackLinkBtn').href = `track.html?id=${trackingId}`;
+  </script>
+</body>
+</html>

@@ -12,19 +12,19 @@
   --primary: #D95338;
   --primary-hover: #B53E24;
   --primary-subtle: #FDF0ED;
-  --accent: #4A7C59;
+  --accent: #3A6846;
   --accent-light: #EBF3ED;
-  --text-dark: #222222;
-  --text-muted: #666666;
-  --border-light: rgba(34, 34, 34, 0.08);
+  --text-dark: #1E1E1E;
+  --text-muted: #4A4A4A;
+  --border-light: rgba(30, 30, 30, 0.1);
 
-  --font-bangla: 'Hind Siliguri', 'Poppins', sans-serif;
+  --font-bangla: 'Hind Siliguri', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Hind Siliguri', 'Playfair Display', Georgia, serif;
   --font-latin-serif: 'Playfair Display', Georgia, serif;
 
-  --shadow-sm: 0 6px 18px rgba(34, 34, 34, 0.04);
-  --shadow-md: 0 14px 32px rgba(34, 34, 34, 0.06);
-  --shadow-lg: 0 22px 48px rgba(34, 34, 34, 0.09);
+  --shadow-sm: 0 6px 18px rgba(30, 30, 30, 0.04);
+  --shadow-md: 0 14px 32px rgba(30, 30, 30, 0.07);
+  --shadow-lg: 0 22px 48px rgba(30, 30, 30, 0.1);
   --shadow-primary: 0 12px 28px rgba(217, 83, 56, 0.35);
 
   --radius-sm: 12px;
@@ -2297,6 +2297,45 @@ button, .btn, a.btn-primary-custom, a.btn-secondary-custom, a.btn-whatsapp-custo
     display: none !important;
   }
 }
+
+/* --- Payment Badges & Trust Enhancements --- */
+.payment-badges-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(217, 83, 56, 0.25);
+}
+
+.payment-badge-pill {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  background: var(--surface-warm);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Accessibility Focus States for Interactive Cards */
+.product-card:focus-within {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Print CSS */
+@media print {
+  .navbar-custom, .announcement-bar, .back-to-top-btn, .custom-cursor, .page-loader {
+    display: none !important;
+  }
+}
+
 
 /* ==========================================================================
    Phase 2 — Premium Micro Interactions

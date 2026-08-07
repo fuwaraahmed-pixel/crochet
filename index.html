@@ -8,6 +8,25 @@
   <meta name="description"
     content="Dremoy Store — বাংলাদেশের প্রিমিয়াম হ্যান্ডমেড ক্রশেট ব্র্যান্ড। অর্গানিক সুতো দিয়ে ভালোবাসায় বোনা চাবির রিং, ব্যাগ চার্ম ও ডেকোর পিস।">
 
+  <!-- Meta & Resource Preconnects for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- SEO & OpenGraph Meta Tags -->
+  <link rel="canonical" href="https://gift.dremoy.com/">
+  <meta name="theme-color" content="#D95338">
+  <meta name="robots" content="index, follow">
+  <meta property="og:site_name" content="Dremoy Store">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dremoy Store — হাতে বোনা ভালোবাসার বিশেষ মেমেন্টো ও ক্রাফট গিফট">
+  <meta property="og:description" content="Dremoy Store — বাংলাদেশের প্রিমিয়াম হ্যান্ডমেড ক্রশেট ব্র্যান্ড। অর্গানিক সুতো দিয়ে ভালোবাসায় বোনা চাবির রিং, ব্যাগ চার্ম ও ডেকোর পিস।">
+  <meta property="og:url" content="https://gift.dremoy.com/">
+  <meta property="og:image" content="https://gift.dremoy.com/assets/images/handmade-in-hand.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dremoy Store — হাতে বোনা ভালোবাসার বিশেষ মেমেন্টো ও ক্রাফট গিফট">
+  <meta name="twitter:description" content="Dremoy Store — বাংলাদেশের প্রিমিয়াম হ্যান্ডমেড ক্রশেট ব্র্যান্ড।">
+
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
@@ -15,6 +34,26 @@
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Schema.org JSON-LD Structured Data for Store & Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "name": "Dremoy Store",
+    "url": "https://gift.dremoy.com/",
+    "logo": "https://gift.dremoy.com/assets/images/handmade-in-hand.jpeg",
+    "description": "বাংলাদেশের প্রিমিয়াম হ্যান্ডমেড ক্রশেট ব্র্যান্ড। অর্গানিক সুতো দিয়ে বোনা ব্যাগ চার্ম, কিচেইন ও ডেকোর পিস।",
+    "telephone": "+8801622536026",
+    "email": "dremoyit@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dhaka",
+      "addressCountry": "BD"
+    },
+    "priceRange": "৳৳"
+  }
+  </script>
 </head>
 
 <body>
@@ -63,6 +102,7 @@
           <li class="nav-item"><a class="nav-link nav-link-custom" href="#gallery">গ্যালারি ও স্মৃতি</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="#reviews">রিভিউ</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="#faq">প্রশ্নোত্তর</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="pages/track.html"><i class="bi bi-truck me-1"></i>অর্ডার ট্র্যাক</a></li>
         </ul>
         <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
           <a href="collection/index.html" class="btn btn-primary-custom py-2 px-4 fs-6">
@@ -150,7 +190,7 @@
             <div class="hero-main-card">
               <img src="assets/images/handmade-in-hand.jpeg"
                 alt="ফুয়ারা ড্রিম স্টোর হাতে বোনা কাস্টম ক্যালা লিলি ক্রশেট চার্ম" class="hero-main-img"
-                loading="eager">
+                width="600" height="600" fetchpriority="high" loading="eager">
             </div>
 
             <!-- Floating Badge 2 -->
@@ -673,19 +713,25 @@
           সাধারণ প্লাস্টিক নয়, প্রিয়জনের হাতে তুলে দিন হাতে বোনা দীর্ঘস্থায়ী ভালোবাসার চিহ্ন।
         </p>
 
-        <!-- Trust Points Row -->
+        <!-- Trust Points & Payment Option Badges -->
         <div class="cta-trust-points mb-4 d-flex flex-wrap justify-content-center gap-3 gap-md-4">
           <span><i class="bi bi-check-circle-fill text-primary-color me-1"></i> ফ্রি গিফট বক্স প্যাকেজিং</span>
           <span><i class="bi bi-check-circle-fill text-primary-color me-1"></i> কাস্টম মেসেজ নোট</span>
           <span><i class="bi bi-check-circle-fill text-accent-color me-1"></i> ক্যাশ অন ডেলিভারি</span>
         </div>
 
+        <div class="payment-badges-container mb-4">
+          <span class="payment-badge-pill"><i class="bi bi-cash-coin text-success"></i> ক্যাশ অন ডেলিভারি</span>
+          <span class="payment-badge-pill"><i class="bi bi-wallet2 text-primary"></i> বিকাশ / নগদ</span>
+          <span class="payment-badge-pill"><i class="bi bi-shield-check text-success"></i> ১০০% সেফ ডেলিভারি</span>
+        </div>
+
         <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
           <button class="btn-primary-custom btn-cta-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
             কাঙ্ক্ষিত উপহার অর্ডার করুন <i class="bi bi-arrow-right ms-1"></i>
           </button>
-          <a href="https://wa.me/8801700000000?text=Hello%20Dremoy%20Dremoy%20Store!%20I%20want%20to%20know%20more%20about%20your%20crochet%20gifts."
-            target="_blank" class="btn-whatsapp-custom btn-cta-whatsapp">
+          <a href="https://wa.me/8801622536026?text=Hello%20Dremoy%20Store!%20I%20want%20to%20know%20more%20about%20your%20crochet%20gifts."
+            target="_blank" rel="noopener" class="btn-whatsapp-custom btn-cta-whatsapp">
             <i class="bi bi-whatsapp fs-5"></i> হোয়াটসঅ্যাপে সরাসরি মেসেজ দিন
           </a>
         </div>
@@ -725,14 +771,34 @@
               <textarea class="form-control form-control-custom" id="customerAddress" rows="2"
                 placeholder="বাড়ি/রোড নম্বর, এলাকা, থানা ও জেলা" required></textarea>
             </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label for="customerDistrict" class="form-label fw-semibold">জেলা *</label>
+                <select class="form-select form-control-custom" id="customerDistrict" required>
+                  <option value="Dhaka" selected>ঢাকা (ঢাকার ভেতরে)</option>
+                  <option value="Outside Dhaka">ঢাকার বাইরে</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="customerQuantity" class="form-label fw-semibold">পরিমাণ *</label>
+                <input type="number" class="form-control form-control-custom" id="customerQuantity" value="1" min="1" max="10" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="customerPayment" class="form-label fw-semibold">পেমেন্ট মাধ্যম</label>
+              <select class="form-select form-control-custom" id="customerPayment">
+                <option value="Cash on Delivery" selected>ক্যাশ অন ডেলিভারি (COD)</option>
+                <option value="bKash / Nagad">বিকাশ / নগদ (অ্যাডভান্স)</option>
+              </select>
+            </div>
             <div class="mb-3">
               <label for="customerNote" class="form-label fw-semibold">বিশেষ উপহার মেসেজ (ঐচ্ছিক)</label>
               <input type="text" class="form-control form-control-custom" id="customerNote"
                 placeholder="গিফট কার্ডে কি লেখা থাকবে?">
             </div>
             <div class="d-grid mt-4">
-              <button type="submit" class="btn btn-primary-custom py-3 fs-6">
-                হোয়াটসঅ্যাপে অর্ডার পাঠান <i class="bi bi-whatsapp ms-1"></i>
+              <button type="submit" id="orderSubmitBtn" class="btn btn-primary-custom py-3 fs-6">
+                অর্ডার নিশ্চিত করুন <i class="bi bi-bag-check ms-1"></i>
               </button>
             </div>
           </form>
@@ -828,9 +894,9 @@
             প্রকাশ।
           </p>
           <div class="footer-social d-flex gap-3">
-            <a href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
-            <a href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp fs-5"></i></a>
+            <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Dremoy Store Facebook Page"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Dremoy Store Instagram Page"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="https://wa.me/8801622536026" target="_blank" rel="noopener" aria-label="Direct WhatsApp Message"><i class="bi bi-whatsapp fs-5"></i></a>
           </div>
         </div>
         <div class="col-6 col-lg-2 ms-auto">

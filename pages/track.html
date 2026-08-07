@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অর্ডার ট্র্যাক করুন — Dremoy Store</title>
+  <meta name="description" content="Dremoy Store — আপনার অর্ডারের বর্তমান অবস্থা এবং লাইভ ট্র্যাকিং টাইমলাইন দেখুন।">
+
+  <!-- Meta Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- SEO & Canonical -->
+  <link rel="canonical" href="https://gift.dremoy.com/pages/track.html">
+  <meta name="theme-color" content="#D95338">
+
+  <!-- Bootstrap 5.3 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+
+  <style>
+    .tracking-timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-top: 30px;
+    }
+    .tracking-timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #E0D8CE;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .timeline-icon {
+      position: absolute;
+      left: -30px;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #E0D8CE;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      border: 3px solid #FAF7F2;
+      z-index: 2;
+    }
+    .timeline-item.completed .timeline-icon {
+      background: #4A7C59;
+    }
+    .timeline-item.current .timeline-icon {
+      background: #D95338;
+      box-shadow: 0 0 0 4px rgba(217, 83, 56, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <i class="bi bi-heart-fill me-1"></i> আপনার অর্ডারের সঠিক ট্র্যাকিং আপডেট জানুন যেকোনো সময়
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom" aria-label="Main Navigation">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-text d-flex align-items-center gap-2" href="../index.html">
+        <i class="bi bi-flower1 text-primary-color fs-3"></i>
+        <span>Dremoy</span> Store
+      </a>
+      <a href="../collection/index.html" class="btn btn-secondary-custom py-2 px-4 fs-6 ms-auto">
+        কালেকশন দেখুন <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Track Order Section -->
+  <section class="section-padding bg-main min-vh-100">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center mb-5">
+          <span class="section-label">লাইভ ট্র্যাকিং</span>
+          <h1 class="section-title fs-2 mb-3">আপনার অর্ডারের অবস্থান দেখুন</h1>
+          <p class="section-subtitle mx-auto">
+            আপনার ট্র্যাকিং আইডি (যেমন: DRM000001) অথবা অর্ডার করার সময়ে ব্যবহৃত মোবাইল নম্বর দিন।
+          </p>
+
+          <!-- Search Form -->
+          <div class="card border-0 shadow-sm rounded-4 p-4 mt-4 bg-white">
+            <form id="trackOrderForm" class="d-flex flex-column flex-md-row gap-3">
+              <input type="text" id="trackInput" class="form-control form-control-custom fs-6" 
+                placeholder="ট্র্যাকিং আইডি (DRM000001) বা মোবাইল নম্বর..." required>
+              <button type="submit" class="btn btn-primary-custom px-4 py-3 text-nowrap">
+                খুঁজুন <i class="bi bi-search ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tracking Results Container -->
+        <div class="col-lg-9">
+          <div id="trackLoading" class="text-center py-5 d-none">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-3 text-muted">অর্ডারের তথ্য খোঁজা হচ্ছে...</p>
+          </div>
+
+          <div id="trackError" class="alert alert-danger rounded-4 p-4 text-center d-none" role="alert">
+            <i class="bi bi-exclamation-triangle-fill fs-3 d-block mb-2"></i>
+            <span id="trackErrorMessage">প্রদত্ত তথ্যে কোনো অর্ডার পাওয়া যায়নি।</span>
+          </div>
+
+          <div id="trackResult" class="d-none">
+            <!-- Dynamic Order Cards populated via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center py-4">
+      <div>&copy; 2026 Dremoy Store. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { ApiService } from '../assets/js/modules/api.js';
+
+    const form = document.getElementById('trackOrderForm');
+    const trackInput = document.getElementById('trackInput');
+    const loading = document.getElementById('trackLoading');
+    const errorAlert = document.getElementById('trackError');
+    const errorMsg = document.getElementById('trackErrorMessage');
+    const resultContainer = document.getElementById('trackResult');
+
+    // Auto-search if query param exists (?id=DRM000001)
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryParam = urlParams.get('id') || urlParams.get('phone');
+    if (queryParam) {
+      trackInput.value = queryParam;
+      performTrack(queryParam);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = trackInput.value.trim();
+      if (val) performTrack(val);
+    });
+
+    async function performTrack(query) {
+      loading.classList.remove('d-none');
+      errorAlert.classList.add('d-none');
+      resultContainer.classList.add('d-none');
+      resultContainer.innerHTML = '';
+
+      const res = await ApiService.trackOrder(query);
+      loading.classList.add('d-none');
+
+      if (res.status === 'error' || !res.orders || res.orders.length === 0) {
+        errorMsg.textContent = res.message || 'কোনো অর্ডার পাওয়া যায়নি।';
+        errorAlert.classList.remove('d-none');
+      } else {
+        renderOrderResults(res.orders);
+        resultContainer.classList.remove('d-none');
+      }
+    }
+
+    function renderOrderResults(orders) {
+      orders.forEach(order => {
+        const card = document.createElement('div');
+        card.className = 'card border-0 shadow-md rounded-4 p-4 mb-4 bg-white';
+        
+        let timelineHTML = '';
+        order.timeline.forEach(step => {
+          const statusClass = step.completed ? 'completed' : (step.current ? 'current' : '');
+          timelineHTML += `
+            <div class="timeline-item ${statusClass}">
+              <div class="timeline-icon"><i class="bi ${step.completed ? 'bi-check' : 'bi-circle-fill'}"></i></div>
+              <h6 class="mb-0 text-dark fw-bold">${step.label}</h6>
+              <small class="text-muted">${step.timestamp}</small>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-3 mb-3">
+            <div>
+              <span class="badge bg-primary-subtle text-primary fs-6 mb-1">ট্র্যাকিং আইডি: ${order.trackingId}</span>
+              <h5 class="fw-bold text-dark mb-0">${order.productName} (${order.variant})</h5>
+            </div>
+            <div class="text-end mt-2 mt-sm-0">
+              <span class="badge bg-success fs-6">স্ট্যাটাস: ${order.status}</span>
+              <div class="text-muted fs-6">মোট মূল্য: ৳${order.total}</div>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <p class="mb-1"><strong>কাস্টমার:</strong> ${order.customerName}</p>
+              <p class="mb-1"><strong>কুরিয়ার:</strong> ${order.courier}</p>
+              <p class="mb-0"><strong>কুরিয়ার ট্র্যাকিং নং:</strong> ${order.courierTrackingNo}</p>
+            </div>
+            <div class="col-md-6">
+              <h6 class="fw-bold mb-2">ট্র্যাকিং টাইমলাইন:</h6>
+              <div class="tracking-timeline">
+                ${timelineHTML}
+              </div>
+            </div>
+          </div>
+        `;
+        resultContainer.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
