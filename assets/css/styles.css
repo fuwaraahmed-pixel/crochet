@@ -3,7 +3,7 @@
    Brand Strategy & Editorial UX Design System
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
 
 :root {
   --bg-main: #FAF7F2;
@@ -240,7 +240,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* --- Section Utilities --- */
 .section-padding {
-  padding: 90px 0;
+  padding: 38px 0;
 }
 
 .section-label {
@@ -268,35 +268,1014 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   max-width: 620px;
 }
 
-/* --- Hero Section (Redesigned Luxury Experience) --- */
-.hero-section {
-  padding: 110px 0 130px 0;
+/* --- Hero Section (Full Display Banner Overlay Redesign) --- */
+.hero-full-display-banner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 600px;
+  background-image: url('../images/hero-full-display-banner.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+.hero-full-container {
+  position: relative;
+  z-index: 3;
+}
+
+.min-vh-hero {
+  min-height: 580px;
+}
+
+/* Right Content Overlay Area */
+.hero-right-content {
+  z-index: 4;
+}
+
+.hero-text-inner {
+  max-width: 560px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.hero-main-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.6rem;
+  font-weight: 600;
+  color: #1E1E1E;
+  margin-bottom: 0px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.hero-cursive-sub {
+  font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+  font-size: 2.6rem;
+  color: #F87B88;
+  margin-bottom: 18px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.hero-description-text {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  color: #4A4A4A;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+/* Signature Pill Button */
+.btn-hero-pill {
+  background: #F87B88;
+  color: #FFFFFF !important;
+  border: none;
+  padding: 14px 38px;
+  border-radius: 50px;
+  font-family: var(--font-bangla);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 25px rgba(248, 123, 136, 0.35);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-hero-pill:hover {
+  background: #E66A77;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(248, 123, 136, 0.45);
+}
+
+/* Slider Nav Arrows */
+.hero-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background-color: rgba(30, 30, 30, 0.85);
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: none;
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hero-slider-arrow:hover {
+  background-color: #1A1A1A;
+  transform: translateY(-50%) scale(1.1);
+  opacity: 1;
+}
+
+.hero-slider-prev {
+  left: 20px;
+}
+
+.hero-slider-next {
+  right: 20px;
+}
+
+/* Pagination Dots */
+.hero-pagination-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.hero-pagination-dots .dot {
+  width: 8px;
+  height: 8px;
+  background-color: #1E1E1E;
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-pagination-dots .dot.active {
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+}
+
+/* Floating Petals Overlay */
+.hero-petals-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.petal {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0.45;
+  animation: floatPetal 8s linear infinite;
+}
+
+.petal-1 { top: 10%; left: 15%; animation-duration: 7s; font-size: 1.4rem; }
+.petal-2 { top: 20%; right: 15%; animation-duration: 9s; font-size: 1.1rem; }
+.petal-3 { top: 60%; left: 10%; animation-duration: 6s; font-size: 1.3rem; }
+.petal-4 { top: 70%; right: 20%; animation-duration: 10s; font-size: 1.2rem; }
+.petal-5 { top: 40%; left: 80%; animation-duration: 8s; font-size: 1.5rem; }
+.petal-6 { top: 85%; left: 45%; animation-duration: 11s; font-size: 1.1rem; }
+
+@keyframes floatPetal {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateY(-15px) rotate(180deg); opacity: 0.6; }
+  100% { transform: translateY(0) rotate(360deg); opacity: 0.2; }
+}
+
+@media (max-width: 991.98px) {
+  .hero-main-title { font-size: 2.8rem; }
+  .hero-cursive-sub { font-size: 2rem; }
+  .hero-slider-prev { left: 10px; }
+  .hero-slider-next { right: 10px; }
+}
+
+@media (max-width: 767.98px) {
+  .hero-full-display-banner {
+    background-image: none !important;
+    background: linear-gradient(135deg, #FFFDFB 0%, #FFF8F6 50%, #FDF5F7 100%) !important;
+    min-height: auto;
+    padding: 25px 0 40px 0;
+  }
+  .min-vh-hero {
+    min-height: auto;
+  }
+  .hero-mobile-banner-img {
+    display: block !important;
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    object-position: center left;
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(30, 30, 30, 0.1);
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+  }
+  .hero-text-inner {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-align: center;
+  }
+  .hero-main-title {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    color: #1E1E1E;
+  }
+  .hero-cursive-sub {
+    font-size: 2rem;
+    color: #F87B88;
+    margin-bottom: 14px;
+  }
+  .hero-description-text {
+    font-size: 0.96rem;
+    color: #4A4A4A;
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+  .btn-hero-pill {
+    padding: 14px 32px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  .hero-slider-arrow {
+    display: none !important;
+  }
+  .badge-tag {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    white-space: normal;
+    text-align: center;
+    margin-bottom: 16px !important;
+  }
+  .handcrafted-badge-group {
+    font-size: 0.78rem;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 20px !important;
+  }
+}
+
+/* --- Brand Story Editorial Design (Matching Reference Image) --- */
+.story-editorial-style {
+  background-color: #FAF6F0;
+  background: linear-gradient(180deg, #FFFDFB 0%, #FAF6F0 100%);
+  padding: 10px 20px;
   position: relative;
   overflow: hidden;
 }
 
-.hero-bg-glow {
-  position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(201, 93, 69, 0.12) 0%, rgba(250, 247, 242, 0) 70%);
-  z-index: -1;
-  pointer-events: none;
+.story-editorial-inner {
+  max-width: 980px;
 }
 
-.hero-image-glow {
+.story-script-sub {
+  font-family: 'Great Vibes', 'Allura', 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #D95338;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.story-editorial-title {
+  font-family: 'Hind Siliguri', 'Playfair Display', Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* Inline Image Badge inside Headline */
+.inline-badge-img-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin: 0 6px;
+}
+
+.inline-badge-img {
+  width: 52px;
+  height: 32px;
+  border-radius: 50px;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  border: 2px solid #FFFFFF;
+}
+
+.story-text-block {
+  max-width: 940px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(220, 200, 190, 0.4);
+  border-radius: 16px;
+  padding: 14px 28px;
+  box-shadow: 0 4px 16px rgba(30, 30, 30, 0.03);
+}
+
+.story-editorial-desc {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  color: #4A4A4A;
+  line-height: 1.75;
+}
+
+/* Brand Signature Quote Card (Matching Reference Image) */
+.story-quote-card {
+  max-width: 720px;
+  background: #FFFDF9;
+  border-radius: 16px;
+  padding: 22px 28px 22px 34px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(30, 30, 30, 0.04);
+  border: 1px solid rgba(220, 200, 190, 0.35);
+  overflow: hidden;
+}
+
+.story-quote-border {
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, #E25B3E 0%, #B83F25 100%);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.story-quote-text {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #333333;
+  line-height: 1.85;
+}
+
+.story-badge-pill,
+.story-tagline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 20px;
+  background: linear-gradient(135deg, rgba(217, 83, 56, 0.08) 0%, rgba(248, 123, 136, 0.12) 100%);
+  border: 1px solid rgba(217, 83, 56, 0.22);
+  border-radius: 50px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #C23B22;
+  box-shadow: 0 4px 12px rgba(217, 83, 56, 0.06);
+  animation: floatBadgePulse 3.5s ease-in-out infinite;
+}
+
+.heart-pulse-icon {
+  display: inline-block;
+  animation: heartBeatPulse 1.6s ease-in-out infinite;
+}
+
+.story-gradient-handle {
+  background: linear-gradient(135deg, #E25B3E 0%, #B83F25 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.story-lead-paragraph {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 1.22rem;
+  color: #222222;
+  line-height: 1.8;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.story-highlight-mark {
+  background: linear-gradient(120deg, rgba(248, 123, 136, 0.22) 0%, rgba(217, 83, 56, 0.15) 100%);
+  color: #A82E17;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.story-highlight-mark:hover {
+  background: linear-gradient(120deg, rgba(248, 123, 136, 0.35) 0%, rgba(217, 83, 56, 0.25) 100%);
+  color: #8C220E;
+}
+
+.story-bg-flower {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 110%;
-  height: 110%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(201, 93, 69, 0.15) 0%, rgba(250, 247, 242, 0) 70%);
-  z-index: 1;
+  font-size: 26rem;
+  color: rgba(217, 83, 56, 0.03);
   pointer-events: none;
-  filter: blur(20px);
+  z-index: 1;
+  animation: bgFlowerRotate 90s linear infinite;
+}
+
+/* Story Keyframes Animations */
+@keyframes floatBadgePulse {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(217, 83, 56, 0.06);
+  }
+  50% {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(217, 83, 56, 0.15);
+  }
+}
+
+@keyframes heartBeatPulse {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.25); }
+  45% { transform: scale(1); }
+  60% { transform: scale(1.15); }
+}
+
+@keyframes bgFlowerRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- Realistic Organic Rose Petals & Ambient Vector Hearts --- */
+.story-floating-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.real-petal {
+  position: absolute;
+  width: 26px;
+  height: 30px;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(217, 83, 56, 0.25));
+  z-index: 10;
+  display: block;
+}
+
+.real-heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(217, 83, 56, 0.2));
+  z-index: 10;
+  display: block;
+}
+
+/* Realistic Slow Motion Falling Petals (18s to 26s durations!) */
+.fall-petal-1 {
+  left: 6%;
+  animation: fallRealisticPetal 20s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.fall-petal-2 {
+  left: 26%;
+  animation: fallRealisticPetal 24s cubic-bezier(0.37, 0, 0.63, 1) infinite 4s;
+}
+
+.fall-petal-3 {
+  left: 52%;
+  animation: fallRealisticPetal 21s cubic-bezier(0.37, 0, 0.63, 1) infinite 1.5s;
+}
+
+.fall-petal-4 {
+  left: 74%;
+  animation: fallRealisticPetal 26s cubic-bezier(0.37, 0, 0.63, 1) infinite 7s;
+}
+
+.fall-petal-5 {
+  left: 90%;
+  animation: fallRealisticPetal 22s cubic-bezier(0.37, 0, 0.63, 1) infinite 3s;
+}
+
+/* Traveling Soft Translucent Vector Hearts */
+.travel-heart-1 {
+  top: 45%;
+  left: 4%;
+  animation: travelHeartPath1 16s ease-in-out infinite;
+}
+
+.travel-heart-2 {
+  top: 15%;
+  right: 5%;
+  animation: travelHeartPath2 18s ease-in-out infinite 3s;
+}
+
+/* Keyframes for Slow Motion Organic Rose Petal Swaying & Falling */
+@keyframes fallRealisticPetal {
+  0% {
+    top: -15%;
+    transform: translateX(0) rotate(0deg) rotateY(0deg) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  35% {
+    transform: translateX(42px) rotate(80deg) rotateY(180deg) scale(1);
+    opacity: 0.95;
+  }
+  70% {
+    transform: translateX(-30px) rotate(220deg) rotateY(360deg) scale(0.9);
+    opacity: 0.85;
+  }
+  100% {
+    top: 115%;
+    transform: translateX(20px) rotate(360deg) rotateY(540deg) scale(0.75);
+    opacity: 0;
+  }
+}
+
+/* Keyframes for Traveling Hearts */
+@keyframes travelHeartPath1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translate(65px, -40px) scale(1.18) rotate(18deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(-40px, 30px) scale(0.92) rotate(-14deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes travelHeartPath2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.65;
+  }
+  45% {
+    transform: translate(-70px, 45px) scale(1.15) rotate(-20deg);
+    opacity: 0.95;
+  }
+  80% {
+    transform: translate(35px, -25px) scale(0.95) rotate(12deg);
+    opacity: 0.75;
+  }
+}
+
+.story-stats-bar {
+  border-top: 1px dashed rgba(217, 83, 56, 0.2);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.story-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-family: 'Hind Siliguri', 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #D95338;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.84rem;
+  color: #666666;
+  font-weight: 500;
+}
+
+.stat-sep {
+  color: #D95338;
+  opacity: 0.4;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 767.98px) {
+  .story-editorial-style {
+    padding: 55px 15px;
+  }
+  .story-script-sub {
+    font-size: 2rem;
+  }
+  .story-editorial-title {
+    font-size: 1.55rem;
+    line-height: 1.55;
+  }
+  .inline-badge-img {
+    width: 46px;
+    height: 28px;
+  }
+  .story-editorial-desc {
+    font-size: 0.95rem;
+  }
+}
+
+/* --- Editorial Product Card Grid (Matching Reference Image) --- */
+/* --- Editorial Product Card Grid (Matching Bestow Gift Store Proportions) --- */
+.editorial-product-card {
+  background: #FFFFFF;
+  border: 1px solid #1A1A1A;
+  border-radius: 0px;
+  overflow: hidden;
+  height: 430px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+}
+
+.editorial-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.editorial-product-card .product-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  flex: 0 0 60%;
+  overflow: hidden;
+  background: #F8F7F5;
+}
+
+.editorial-product-card .product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.editorial-product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.product-badge-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #FFFFFF;
+  border: 1px solid #1A1A1A;
+  border-radius: 50px;
+  padding: 3px 10px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1A1A1A;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.editorial-product-card .product-fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #E2E0D8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A1A1A;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.editorial-product-card .product-fav-btn:hover {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+}
+
+.product-hover-overlay-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  background: #000000;
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 3;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.editorial-product-card:hover .product-hover-overlay-btn {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.product-info-body {
+  padding: 14px 16px 16px 16px;
+  height: 40%;
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-category-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cat-dot {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cat-dot-pink {
+  color: #D95338;
+}
+
+.cat-dot-purple {
+  color: #8E44AD;
+}
+
+.cat-dot-gold {
+  color: #D4AC0D;
+}
+
+.editorial-product-title {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+
+.editorial-product-title a {
+  color: #1A1A1A;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.editorial-product-title a:hover {
+  color: #D95338;
+}
+
+.editorial-product-desc {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.84rem;
+  color: #666666;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-rating-stars {
+  color: #F39C12;
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.editorial-product-price {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-top: 2px;
+}
+
+/* --- Premium Gift Philosophy Banner Section (Matching Reference Callout) --- */
+.luxury-quote-banner-section {
+  position: relative;
+  overflow: hidden;
+  margin: 30px 0;
+}
+
+.luxury-quote-banner-bg {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.luxury-quote-banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(20, 10, 8, 0.82) 0%, rgba(35, 18, 14, 0.88) 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 2;
+}
+
+.luxury-quote-content-wrapper {
+  max-width: 860px;
+}
+
+.luxury-banner-subtitle {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #F8A596;
+  text-transform: uppercase;
+  background: rgba(217, 83, 56, 0.18);
+  border: 1px solid rgba(248, 165, 150, 0.3);
+  padding: 5px 18px;
+  border-radius: 50px;
+}
+
+.luxury-banner-quote {
+  font-family: 'Hind Siliguri', 'Playfair Display', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.55;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.01em;
+}
+
+.luxury-banner-badges {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.luxury-badge-item {
+  color: #FAF2EC;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.luxury-badge-divider {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .luxury-banner-quote {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+  .luxury-badge-divider {
+    display: none;
+  }
+}
+
+/* --- Editorial Highlight Cards (Why DremoyStore Feature Grid) --- */
+.editorial-highlight-card {
+  background: #FFFFFF;
+  border: 1px solid #1A1A1A;
+  border-radius: 0px;
+  overflow: hidden;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+}
+
+.editorial-highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-top-header {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  flex: 0 0 25%;
+  background: #FAF7F2;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.1);
+  overflow: hidden;
+}
+
+.highlight-badge-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #FFFFFF;
+  border: 1px solid #1A1A1A;
+  border-radius: 50px;
+  padding: 3px 10px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1A1A1A;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.highlight-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.editorial-highlight-card:hover .highlight-img {
+  transform: scale(1.06);
+}
+
+.highlight-info-body {
+  padding: 14px 16px;
+  height: 75%;
+  flex: 0 0 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+}
+
+.highlight-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #D95338;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.highlight-card-title {
+  font-family: 'Hind Siliguri', 'Playfair Display', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.highlight-card-desc {
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: #222222;
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+
+.highlight-bottom-note {
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #B83F25;
+  background: #FDF4F2;
+  border: 1px solid rgba(217, 83, 56, 0.22);
+  border-radius: 8px;
+  padding: 5px 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .badge-tag {
@@ -319,65 +1298,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background-color: var(--accent);
   border-radius: 50%;
   box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
-}
-
-.hero-title {
-  font-size: 2.95rem;
-  font-weight: 700;
-  line-height: 1.32;
-  margin-bottom: 24px;
-  letter-spacing: -0.015em;
-}
-
-.hero-title em {
-  font-family: var(--font-heading);
-  font-style: italic;
-  color: var(--primary);
-  font-weight: 600;
-}
-
-.hero-description {
-  font-size: 1.12rem;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-  max-width: 480px;
-  line-height: 1.8;
-}
-
-.btn-hero-primary {
-  padding: 16px 36px;
-  font-size: 1.05rem;
-  box-shadow: 0 14px 32px rgba(201, 93, 69, 0.32);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-hero-primary:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 42px rgba(201, 93, 69, 0.42);
-}
-
-.btn-hero-secondary {
-  padding: 16px 34px;
-  font-size: 1.05rem;
-  background-color: var(--white);
-  border: 1.5px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-hero-secondary:hover {
-  border-color: var(--text-dark);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Hero CTA Group */
-.hero-cta-group {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 4px;
 }
 
 /* Handcrafted Badges */
