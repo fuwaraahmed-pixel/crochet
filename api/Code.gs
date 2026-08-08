@@ -39,7 +39,7 @@ function setupSheets() {
     },
     {
       name: SHEET_PRODUCTS,
-      headers: ["Product ID", "Product Name", "Price", "Discount", "Stock", "Status", "Image", "Description", "Category"]
+      headers: ["Product ID", "Product Name", "Description", "Category", "Price", "Discount", "Stock", "Status", "Image"]
     },
     {
       name: SHEET_REVIEWS,
@@ -457,17 +457,18 @@ function getProductsData() {
   const rows = sheet.getDataRange().getValues();
   const products = [];
   for (let i = 1; i < rows.length; i++) {
-    if (String(rows[i][5]).toLowerCase() === "active" || rows[i][5] === true) {
+    const statusVal = String(rows[i][7] || "").toLowerCase();
+    if (statusVal === "active" || rows[i][7] === true) {
       products.push({
-        id: rows[i][0],
-        name: rows[i][1],
-        price: rows[i][2],
-        discount: rows[i][3],
-        stock: rows[i][4],
-        status: rows[i][5],
-        image: rows[i][6],
-        description: rows[i][7] || "",
-        category: rows[i][8] || ""
+        id: rows[i][0],                 // Col A (0): Product ID
+        name: rows[i][1],               // Col B (1): Product Name
+        description: rows[i][2] || "",  // Col C (2): Description
+        category: rows[i][3] || "",     // Col D (3): Category
+        price: rows[i][4],              // Col E (4): Price
+        discount: rows[i][5],           // Col F (5): Discount
+        stock: rows[i][6],              // Col G (6): Stock
+        status: rows[i][7],             // Col H (7): Status
+        image: rows[i][8]               // Col I (8): Image
       });
     }
   }
