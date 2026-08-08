@@ -39,7 +39,7 @@ function setupSheets() {
     },
     {
       name: SHEET_PRODUCTS,
-      headers: ["Product ID", "Product Name", "Price", "Discount", "Stock", "Status", "Image"]
+      headers: ["Product ID", "Product Name", "Price", "Discount", "Stock", "Status", "Image", "Description", "Category"]
     },
     {
       name: SHEET_REVIEWS,
@@ -464,7 +464,10 @@ function getProductsData() {
         price: rows[i][2],
         discount: rows[i][3],
         stock: rows[i][4],
-        image: rows[i][6]
+        status: rows[i][5],
+        image: rows[i][6],
+        description: rows[i][7] || "",
+        category: rows[i][8] || ""
       });
     }
   }

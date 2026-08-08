@@ -195,43 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 5. Wishlist Heart Button Feedback & Toast Notification
-  const favBtns = document.querySelectorAll('.product-fav-btn');
   const toast = document.getElementById('toastNotification');
   const toastText = document.getElementById('toastText');
-
-  favBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      btn.classList.toggle('active');
-      const icon = btn.querySelector('i');
-      if (icon) {
-        if (btn.classList.contains('active')) {
-          icon.className = 'bi bi-heart-fill';
-          showToast('💖 আপনার পছন্দের তালিকায় যোগ করা হয়েছে');
-
-          // Trigger 3 tiny floating hearts
-          for (let i = 0; i < 3; i++) {
-            const miniHeart = document.createElement('span');
-            miniHeart.className = 'floating-mini-heart';
-            miniHeart.innerHTML = '❤️';
-            const offset = (i - 1) * 16;
-            miniHeart.style.setProperty('--tx', `${offset}px`);
-            miniHeart.style.left = '50%';
-            miniHeart.style.top = '20%';
-            miniHeart.style.animationDelay = `${i * 0.1}s`;
-            btn.appendChild(miniHeart);
-
-            setTimeout(() => {
-              miniHeart.remove();
-            }, 850);
-          }
-        } else {
-          icon.className = 'bi bi-heart';
-          showToast('পছন্দের তালিকা থেকে সরানো হয়েছে');
-        }
-      }
-    });
-  });
 
   function showToast(message) {
     if (!toast || !toastText) return;
@@ -241,6 +206,48 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 3000);
   }
+
+  function attachFavButtonListeners() {
+    const favBtns = document.querySelectorAll('.product-fav-btn');
+    favBtns.forEach(btn => {
+      if (btn.dataset.favAttached) return;
+      btn.dataset.favAttached = 'true';
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        btn.classList.toggle('active');
+        const icon = btn.querySelector('i');
+        if (icon) {
+          if (btn.classList.contains('active')) {
+            icon.className = 'bi bi-heart-fill';
+            showToast('💖 আপনার পছন্দের তালিকায় যোগ করা হয়েছে');
+
+            // Trigger 3 tiny floating hearts
+            for (let i = 0; i < 3; i++) {
+              const miniHeart = document.createElement('span');
+              miniHeart.className = 'floating-mini-heart';
+              miniHeart.innerHTML = '❤️';
+              const offset = (i - 1) * 16;
+              miniHeart.style.setProperty('--tx', `${offset}px`);
+              miniHeart.style.left = '50%';
+              miniHeart.style.top = '20%';
+              miniHeart.style.animationDelay = `${i * 0.1}s`;
+              btn.appendChild(miniHeart);
+
+              setTimeout(() => {
+                miniHeart.remove();
+              }, 850);
+            }
+          } else {
+            icon.className = 'bi bi-heart';
+            showToast('পছন্দের তালিকা থেকে সরানো হয়েছে');
+          }
+        }
+      });
+    });
+  }
+
+  attachFavButtonListeners();
 
   // 6. Quick Order Modal Logic & Live Price Sync from Google Sheets
   const orderModal = document.getElementById('orderModal');
@@ -261,14 +268,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Live Price Sync from Google Sheets API
+  // Live Auto-Sync & Dynamic Product Rendering from Google Sheets API
   async function syncLiveProductsFromSheet() {
     try {
-      const scriptUrl = "https://script.google.com/macros/s/AKfycbyWD8TMbk4tO5EYjikoKvDOhlouZqCnWInjFQMYc-xNFYbQ2wM3zCnItmSo-dteArfpMQ/exec?action=getProducts";
-      const res = await fetch(scriptUrl);
-      const data = await res.json();
-      if (data && data.status === "success" && Array.isArray(data.products)) {
+      let data = null;
+      if (window.ApiService && typeof window.ApiService.getProducts === 'function') {
+        data = await window.ApiService.getProducts();
+      } else {
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbyWD8TMbk4tO5EYjikoKvDOhlouZqCnWInjFQMYc-xNFYbQ2wM3zCnItmSo-dteArfpMQ/exec?action=getProducts&_t=" + Date.now();
+        const res = await fetch(scriptUrl);
+        data = await res.json();
+      }
+
+      if (data && data.status === "success" && Array.isArray(data.products) && data.products.length > 0) {
         window.dremoyLiveProducts = data.products;
+
+        const isSubfolder = window.location.pathname.includes('/collection/') || 
+                            window.location.pathname.includes('/pages/') || 
+                            window.location.pathname.includes('/product/');
+        const assetPrefix = isSubfolder ? '../' : '';
 
         const formatPrice = (val) => {
           const num = Number(val);
@@ -276,28 +294,123 @@ document.addEventListener('DOMContentLoaded', () => {
           return `৳ ${num.toLocaleString('bn-BD')}`;
         };
 
+        const resolveImagePath = (imgSrc) => {
+          if (!imgSrc) return assetPrefix + 'assets/images/crochet-bag-tag.webp';
+          if (imgSrc.startsWith('http://') || imgSrc.startsWith('https://')) return imgSrc;
+          let clean = imgSrc.replace(/^(\.\.\/)+/, '').replace(/^\//, '');
+          return assetPrefix + clean;
+        };
+
+        const getProductSlug = (name) => {
+          return String(name || '').toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .trim()
+            .replace(/\s+/g, '-');
+        };
+
+        // 1. Dynamic Rendering for Home Product Grid (#homeProductGrid)
+        const homeGrid = document.getElementById('homeProductGrid');
+        if (homeGrid) {
+          homeGrid.innerHTML = data.products.map((p, idx) => {
+            const priceFormatted = formatPrice(p.price);
+            const originalPriceFormatted = (p.discount && Number(p.discount) > 0) ? formatPrice(Number(p.price) + Number(p.discount)) : null;
+            const imgSrc = resolveImagePath(p.image);
+            const slug = getProductSlug(p.name);
+            const detailUrl = `${assetPrefix}product/${slug}/index.html`;
+            const categoryText = p.category ? String(p.category).toUpperCase() : 'HANDMADE';
+            const descText = p.description ? String(p.description) : 'আপনার প্রিয় ব্যাগে কিউট ও স্নিগ্ধ এক নস্টালজিক লুক এনে দেবে এই চার্ম।';
+
+            return `
+              <div class="col-sm-6 col-lg-3 reveal-fade-up delay-${(idx % 4) + 1} revealed">
+                <div class="editorial-product-card">
+                  <div class="product-img-wrapper">
+                    ${p.discount > 0 ? `<span class="product-badge-pill">SAVE ৳${p.discount}</span>` : `<span class="product-badge-pill">HANDMADE</span>`}
+                    <button class="product-fav-btn" aria-label="উইশলিস্টে যুক্ত করুন"><i class="bi bi-heart"></i></button>
+                    <a href="${detailUrl}">
+                      <img src="${imgSrc}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.src='${assetPrefix}assets/images/crochet-bag-tag.webp'">
+                    </a>
+                    <button class="product-hover-overlay-btn" data-bs-toggle="modal" data-bs-target="#orderModal"
+                      data-product-name="${p.name}" data-product-price="${p.price}">
+                      এখনই অর্ডার করুন
+                    </button>
+                  </div>
+                  <div class="product-info-body">
+                    <div class="product-category-dots">
+                      <span class="cat-dot cat-dot-pink">• ${categoryText}</span>
+                      <span class="cat-dot cat-dot-purple">• DREMOY EXCLUSIVE</span>
+                    </div>
+                    <h3 class="editorial-product-title">
+                      <a href="${detailUrl}">${p.name}</a>
+                    </h3>
+                    <p class="editorial-product-desc">${descText}</p>
+                    <div class="product-rating-stars">★★★★★</div>
+                    <div class="editorial-product-price">
+                      ${priceFormatted}
+                      ${originalPriceFormatted ? `<small class="text-muted text-decoration-line-through ms-2 fs-6">${originalPriceFormatted}</small>` : ''}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        // 2. Dynamic Rendering for Collection Grid (#collectionProductGrid)
+        const collectionGrid = document.getElementById('collectionProductGrid');
+        if (collectionGrid) {
+          collectionGrid.innerHTML = data.products.map((p, idx) => {
+            const priceFormatted = formatPrice(p.price);
+            const originalPriceFormatted = (p.discount && Number(p.discount) > 0) ? formatPrice(Number(p.price) + Number(p.discount)) : null;
+            const imgSrc = resolveImagePath(p.image);
+            const slug = getProductSlug(p.name);
+            const detailUrl = `${assetPrefix}product/${slug}/index.html`;
+
+            return `
+              <div class="col-sm-6 col-lg-3 reveal-fade-up delay-${(idx % 4) + 1} revealed">
+                <div class="product-card">
+                  <div class="product-img-wrapper">
+                    ${p.discount > 0 ? `<span class="product-badge">ডিসকাউন্ট</span>` : `<span class="product-badge">হাতে বোনা</span>`}
+                    <button class="product-fav-btn" aria-label="উইশলিস্টে যুক্ত করুন"><i class="bi bi-heart"></i></button>
+                    <a href="${detailUrl}">
+                      <img src="${imgSrc}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.src='${assetPrefix}assets/images/crochet-bag-tag.webp'">
+                    </a>
+                    <button class="product-quick-view" data-bs-toggle="modal" data-bs-target="#orderModal"
+                      data-product-name="${p.name}" data-product-price="${p.price}">
+                      দ্রুত অর্ডার <i class="bi bi-cart-plus ms-1"></i>
+                    </button>
+                  </div>
+                  <div class="product-info">
+                    <span class="product-category">${p.category || 'Dremoy Collection'}</span>
+                    <h3 class="product-title">
+                      <a href="${detailUrl}">${p.name}</a>
+                    </h3>
+                    <div class="product-price">
+                      ${priceFormatted}
+                      ${originalPriceFormatted ? `<span class="price-original ms-2">${originalPriceFormatted}</span>` : ''}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        // Re-attach wishlist heart button handlers for dynamically created cards
+        attachFavButtonListeners();
+
+        // 3. Fallback matching & Price updates for detail pages / existing buttons
         data.products.forEach(p => {
           if (!p.name) return;
           const cleanName = String(p.name).trim().toLowerCase();
 
-          // 1. Update buttons & cards matching data-product-name
           const btns = document.querySelectorAll('[data-product-name]');
           btns.forEach(btn => {
             const btnName = String(btn.getAttribute('data-product-name')).trim().toLowerCase();
             if (btnName === cleanName && p.price) {
               btn.setAttribute('data-product-price', p.price);
-              
-              const container = btn.closest('.product-card') || btn.closest('.product-info') || btn.closest('.col-lg-6') || btn.closest('.row');
-              if (container) {
-                const priceEl = container.querySelector('.product-price, .price-current, .fs-2.text-primary, .fs-3.fw-bold, .text-primary.fw-bold');
-                if (priceEl) {
-                  priceEl.innerHTML = formatPrice(p.price);
-                }
-              }
             }
           });
 
-          // 2. Update Product Detail Pages (matching H1 title text)
           const h1List = document.querySelectorAll('h1');
           h1List.forEach(h1 => {
             if (String(h1.textContent).trim().toLowerCase() === cleanName && p.price) {
