@@ -7,9 +7,10 @@
   <title>অর্ডার ট্র্যাক করুন — Dremoy Store</title>
   <meta name="description" content="Dremoy Store — আপনার অর্ডারের বর্তমান অবস্থা এবং লাইভ ট্র্যাকিং টাইমলাইন দেখুন।">
 
-  <!-- Meta Preconnects -->
+  <!-- Meta Preconnects & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
   <!-- SEO & Canonical -->
@@ -24,46 +25,237 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
 
   <style>
+    body {
+      font-family: 'Hind Siliguri', 'Outfit', sans-serif;
+      background-color: #FAF7F2;
+      color: #2D2723;
+    }
+
+    .brand-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Luxury Header Quote Card */
+    .quote-card-luxury {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAF0E6 50%, #F5E5D8 100%);
+      border: 1px solid #EAD8C8;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(92, 58, 33, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .quote-card-luxury:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(92, 58, 33, 0.08);
+    }
+    .quote-card-luxury::before {
+      content: '“';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 5rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(217, 83, 56, 0.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    /* Premium Search Bar Container */
+    .search-card-luxury {
+      background: #FFFFFF;
+      border: 1px solid #EFE6DC;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(34, 34, 34, 0.05);
+      padding: 12px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-card-luxury:focus-within {
+      border-color: #D95338;
+      box-shadow: 0 20px 50px rgba(217, 83, 56, 0.12);
+    }
+    .form-control-luxury {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      background: transparent;
+      font-size: 1.05rem;
+      color: #2D2723;
+      padding: 14px 20px;
+    }
+    .form-control-luxury::placeholder {
+      color: #A3968A;
+    }
+    .btn-search-luxury {
+      background: linear-gradient(135deg, #D95338 0%, #C04329 100%);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 18px;
+      padding: 14px 32px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(217, 83, 56, 0.28);
+      transition: all 0.25s ease;
+    }
+    .btn-search-luxury:hover {
+      background: linear-gradient(135deg, #E25B3E 0%, #D95338 100%);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(217, 83, 56, 0.38);
+    }
+    .btn-search-luxury:active {
+      transform: translateY(0);
+    }
+
+    /* Tracking Result Card */
+    .order-card-luxury {
+      background: #FFFFFF;
+      border: 1px solid #ECE3D8;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(34, 34, 34, 0.04);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .order-card-luxury:hover {
+      box-shadow: 0 20px 50px rgba(34, 34, 34, 0.07);
+    }
+    .order-card-header {
+      background: linear-gradient(90deg, #FAF7F2 0%, #FFFFFF 100%);
+      border-bottom: 1px solid #F0E7DC;
+      padding: 24px 28px;
+    }
+
+    /* Status Badges */
+    .status-badge-glow {
+      background: rgba(74, 124, 89, 0.12);
+      color: #2E6F40;
+      border: 1px solid rgba(74, 124, 89, 0.25);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-badge-glow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2E6F40;
+      box-shadow: 0 0 8px rgba(46, 111, 64, 0.6);
+      animation: pulseDot 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    /* Timeline Section Styles */
     .tracking-timeline {
       position: relative;
-      padding-left: 30px;
-      margin-top: 30px;
+      padding-left: 36px;
+      margin-top: 24px;
     }
     .tracking-timeline::before {
       content: '';
       position: absolute;
-      left: 11px;
-      top: 0;
-      bottom: 0;
+      left: 13px;
+      top: 8px;
+      bottom: 8px;
       width: 3px;
-      background: #E0D8CE;
+      background: #E8DFD5;
+      border-radius: 3px;
     }
     .timeline-item {
       position: relative;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
+      transition: all 0.3s ease;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
     }
     .timeline-icon {
       position: absolute;
-      left: -30px;
-      top: 0;
-      width: 25px;
-      height: 25px;
+      left: -36px;
+      top: 2px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: #E0D8CE;
-      color: #FFF;
+      background: #E8DFD5;
+      color: #9C8F82;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      border: 3px solid #FAF7F2;
+      font-size: 0.85rem;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
       z-index: 2;
+      transition: all 0.3s ease;
     }
+
     .timeline-item.completed .timeline-icon {
       background: #4A7C59;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
     }
     .timeline-item.current .timeline-icon {
       background: #D95338;
-      box-shadow: 0 0 0 4px rgba(217, 83, 56, 0.25);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 5px rgba(217, 83, 56, 0.22);
+      transform: scale(1.15);
+    }
+
+    .timeline-item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2D2723;
+      margin-bottom: 3px;
+    }
+    .timeline-item.completed .timeline-item-title {
+      color: #1F4D2B;
+    }
+    .timeline-item.current .timeline-item-title {
+      color: #D95338;
+    }
+
+    .timeline-item-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .timeline-item.completed .timeline-item-desc {
+      color: #2E6F40;
+      font-weight: 500;
+    }
+
+    /* Details List Box */
+    .detail-info-box {
+      background: #FAF7F2;
+      border: 1px solid #EFE6DC;
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .detail-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .detail-info-item:last-child {
+      margin-bottom: 0;
+    }
+    .detail-info-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(217, 83, 56, 0.08);
+      color: #D95338;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -89,38 +281,92 @@
   </nav>
 
   <!-- Track Order Section -->
-  <section class="section-padding bg-main min-vh-100">
-    <div class="container">
+  <section class="section-padding min-vh-100 py-5 position-relative overflow-hidden" 
+           style="background: radial-gradient(circle at 50% 15%, #FFFDFB 0%, #FAF2EA 60%, #F5EAE0 100%);">
+    
+    <!-- Background Floating Luxury Accents -->
+    <div class="position-absolute top-0 start-50 translate-middle-x pointer-events-none opacity-25" style="width: 800px; height: 400px; background: radial-gradient(circle, rgba(217, 83, 56, 0.15) 0%, rgba(255, 255, 255, 0) 70%); filter: blur(60px); z-index: 0;"></div>
+
+    <div class="container position-relative" style="z-index: 1;">
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-center mb-5">
-          <span class="section-label">লাইভ ট্র্যাকিং</span>
-          <h1 class="section-title fs-2 mb-3">আপনার অর্ডারের অবস্থান দেখুন</h1>
-          <p class="section-subtitle mx-auto">
-            আপনার ট্র্যাকিং আইডি (যেমন: DRM000001) অথবা অর্ডার করার সময়ে ব্যবহৃত মোবাইল নম্বর দিন।
+        <div class="col-lg-10 text-center mb-4">
+          
+          <!-- Top Badge -->
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-white shadow-xs border border-danger-subtle mb-3">
+            <span class="d-inline-block rounded-circle bg-danger" style="width: 8px; height: 8px; box-shadow: 0 0 8px rgba(217,83,56,0.6);"></span>
+            <span class="fw-semibold fs-6 text-dark" style="letter-spacing: 0.3px;"><i class="bi bi-heart-fill text-danger me-1"></i> পরম ভালোবাসার লাইভ ট্র্যাকিং</span>
+          </div>
+
+          <!-- Main Hero Title -->
+          <h1 class="display-6 fw-bold text-dark mb-3" style="font-family: 'Hind Siliguri', sans-serif; letter-spacing: -0.5px;">
+            আপনার উপহারের <span class="position-relative d-inline-block" style="color: #D95338;">প্রতিটি পদক্ষেপের <svg class="position-absolute start-0 bottom-0 w-100" style="height: 8px; overflow: visible;" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,15 Q50,0 100,15" stroke="#F5C2B8" stroke-width="4" fill="none" stroke-linecap="round"/></svg></span> আপডেট
+          </h1>
+
+          <!-- Ultra-Premium Emotional Quote Banner -->
+          <div class="card border-0 rounded-4 my-4 p-4 p-md-5 position-relative overflow-hidden shadow-lg text-center"
+               style="background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(253,246,239,0.95) 100%); border: 1.5px solid #EBD5C5 !important; backdrop-filter: blur(10px);">
+            
+            <!-- Watermark Large Quote Icon -->
+            <i class="bi bi-quote position-absolute top-0 start-0 ms-3 mt-1 pointer-events-none opacity-10 text-danger" style="font-size: 7rem; line-height: 1;"></i>
+
+            <div class="position-relative z-1">
+              <p class="fs-4 fw-bold brand-serif text-dark mb-3 px-lg-4" style="color: #3A2318 !important; line-height: 1.6; font-family: 'Playfair Display', 'Hind Siliguri', serif;">
+                "আপনার অর্ডার শুধু একটি প্যাকেট নয়—এটি কারও জন্য পাঠানো একটু ভালোবাসা।<br class="d-none d-md-inline"> 
+                তাই প্রতিটি ধাপে আমরা রাখছি যত্ন।"
+              </p>
+
+              <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 mt-3">
+                <span class="badge bg-white text-dark px-3 py-2 rounded-pill shadow-xs border border-secondary-subtle fs-6">
+                  <i class="bi bi-flower1 me-1 text-danger"></i> Dremoy Handcrafted Care Team
+                </span>
+                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill border border-success-subtle fs-6">
+                  <i class="bi bi-patch-check-fill me-1"></i> ১০০% লাইভ সিঙ্কড
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-muted fs-6 mb-4">
+            আপনার ট্র্যাকিং আইডি (যেমন: <code class="bg-white px-2 py-1 rounded text-danger border">DRM000001</code>) অথবা মোবাইল নম্বর দিয়ে নিচে রিয়েল-টাইম সার্চ করুন:
           </p>
 
-          <!-- Search Form -->
-          <div class="card border-0 shadow-sm rounded-4 p-4 mt-4 bg-white">
-            <form id="trackOrderForm" class="d-flex flex-column flex-md-row gap-3">
-              <input type="text" id="trackInput" class="form-control form-control-custom fs-6" 
-                placeholder="ট্র্যাকিং আইডি (DRM000001) বা মোবাইল নম্বর..." required>
-              <button type="submit" class="btn btn-primary-custom px-4 py-3 text-nowrap">
-                খুঁজুন <i class="bi bi-search ms-1"></i>
+          <!-- Search Form Card -->
+          <div class="search-card-luxury max-w-700 mx-auto">
+            <form id="trackOrderForm" class="d-flex flex-column flex-md-row gap-2">
+              <div class="input-group flex-grow-1 align-items-center">
+                <span class="ps-3 text-muted fs-5"><i class="bi bi-search text-danger"></i></span>
+                <input type="text" id="trackInput" class="form-control form-control-luxury" 
+                  placeholder="ট্র্যাকিং আইডি (DRM000001) বা মোবাইল নম্বর..." required>
+              </div>
+              <button type="submit" class="btn btn-search-luxury text-nowrap py-3 px-4">
+                খুঁজুন <i class="bi bi-arrow-right-short fs-4 align-middle ms-1"></i>
               </button>
             </form>
           </div>
+
+          <!-- Quick Sample Test Pills -->
+          <div class="d-flex flex-wrap align-items-center justify-content-center gap-2 mt-3 text-muted small">
+            <span>💡 দ্রুত টেস্ট করুন:</span>
+            <button type="button" class="btn btn-sm btn-light border rounded-pill px-3 py-1 text-dark" onclick="document.getElementById('trackInput').value='DRM000001'; document.getElementById('trackOrderForm').dispatchEvent(new Event('submit'));">
+              DRM000001
+            </button>
+            <button type="button" class="btn btn-sm btn-light border rounded-pill px-3 py-1 text-dark" onclick="document.getElementById('trackInput').value='DRM000002'; document.getElementById('trackOrderForm').dispatchEvent(new Event('submit'));">
+              DRM000002
+            </button>
+          </div>
+
         </div>
 
         <!-- Tracking Results Container -->
-        <div class="col-lg-9">
+        <div class="col-lg-9 mt-3">
           <div id="trackLoading" class="text-center py-5 d-none">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-3 text-muted">অর্ডারের তথ্য খোঁজা হচ্ছে...</p>
+            <div class="spinner-border text-danger" role="status" style="width: 2.5rem; height: 2.5rem;"></div>
+            <p class="mt-3 text-muted fw-medium">অর্ডারের তথ্য খোঁজা হচ্ছে...</p>
           </div>
 
-          <div id="trackError" class="alert alert-danger rounded-4 p-4 text-center d-none" role="alert">
-            <i class="bi bi-exclamation-triangle-fill fs-3 d-block mb-2"></i>
-            <span id="trackErrorMessage">প্রদত্ত তথ্যে কোনো অর্ডার পাওয়া যায়নি।</span>
+          <div id="trackError" class="alert alert-danger rounded-4 p-4 text-center d-none shadow-sm border-0" role="alert">
+            <i class="bi bi-exclamation-circle-fill fs-2 d-block mb-2 text-danger"></i>
+            <span id="trackErrorMessage" class="fw-medium">প্রদত্ত তথ্যে কোনো অর্ডার পাওয়া যায়নি।</span>
           </div>
 
           <div id="trackResult" class="d-none">
@@ -140,8 +386,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script type="module">
-    import { ApiService } from '../assets/js/modules/api.js';
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWD8TMbk4tO5EYjikoKvDOhlouZqCnWInjFQMYc-xNFYbQ2wM3zCnItmSo-dteArfpMQ/exec";
 
     const form = document.getElementById('trackOrderForm');
     const trackInput = document.getElementById('trackInput');
@@ -170,56 +416,189 @@
       resultContainer.classList.add('d-none');
       resultContainer.innerHTML = '';
 
-      const res = await ApiService.trackOrder(query);
-      loading.classList.add('d-none');
+      try {
+        const res = await fetch(`${APPS_SCRIPT_URL}?action=trackOrder&query=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        loading.classList.add('d-none');
 
-      if (res.status === 'error' || !res.orders || res.orders.length === 0) {
-        errorMsg.textContent = res.message || 'কোনো অর্ডার পাওয়া যায়নি।';
+        if (data.status === 'error' || !data.orders || data.orders.length === 0) {
+          errorMsg.textContent = data.message || 'প্রদত্ত ট্র্যাকিং আইডি বা মোবাইল নম্বরে কোনো অর্ডার পাওয়া যায়নি।';
+          errorAlert.classList.remove('d-none');
+        } else {
+          renderOrderResults(data.orders);
+          resultContainer.classList.remove('d-none');
+        }
+      } catch (err) {
+        loading.classList.add('d-none');
+        errorMsg.textContent = 'নেটওয়ার্ক ত্রুটি! ইন্টারনেট সংযোগ পরীক্ষা করুন।';
         errorAlert.classList.remove('d-none');
-      } else {
-        renderOrderResults(res.orders);
-        resultContainer.classList.remove('d-none');
       }
     }
 
     function renderOrderResults(orders) {
-      orders.forEach(order => {
+      const validOrders = (orders || []).filter(o => o && o.trackingId && String(o.trackingId).trim() !== '');
+      if (validOrders.length === 0) {
+        errorMsg.textContent = 'প্রদত্ত ট্র্যাকিং আইডি বা মোবাইল নম্বরে কোনো সক্রিয় অর্ডার পাওয়া যায়নি।';
+        errorAlert.classList.remove('d-none');
+        return;
+      }
+
+      const stepsList = ["Pending", "Confirmed", "Processing", "Packaging", "Shipped", "Out For Delivery", "Delivered"];
+      const statusMessagesMap = {
+        "Pending": "আপনার ভালোবাসা আমাদের কাছে পৌঁছেছে।",
+        "Confirmed": "চিন্তা নেই, আপনার উপহারটি আমাদের যত্নে আছে।",
+        "Processing": "ভালোবাসা দিয়ে আপনার উপহারটি তৈরি হচ্ছে।",
+        "Packaging": "ভালোবাসা সুন্দর করে গুছিয়ে দেওয়া হয়েছে।",
+        "Shipped": "আপনার উপহারটি এখন আপনারই পথে।",
+        "Out For Delivery": "আজই হয়তো আপনার দরজায় কড়া নাড়বে।",
+        "Delivered": "একটি উপহার পৌঁছাল, একটি হাসি ফুটল।",
+        "Cancelled": "এইবার হয়নি, তবে ভালোবাসা থেমে নেই।"
+      };
+
+      const getNormKey = (str) => {
+        if (!str) return "Pending";
+        const s = String(str).toLowerCase();
+        if (s.includes("pending") || s.includes("গৃহীত")) return "Pending";
+        if (s.includes("confirm") || s.includes("কনফার্ম")) return "Confirmed";
+        if (s.includes("process") || s.includes("প্রস্তুতি")) return "Processing";
+        if (s.includes("packag") || s.includes("প্যাকিং")) return "Packaging";
+        if (s.includes("ship") || s.includes("কুরিয়ারে")) return "Shipped";
+        if (s.includes("out for delivery") || s.includes("ডেলিভারির জন্য")) return "Out For Delivery";
+        if (s.includes("deliver") || s.includes("ডেলিভারড")) return "Delivered";
+        return s;
+      };
+
+      validOrders.forEach(order => {
         const card = document.createElement('div');
-        card.className = 'card border-0 shadow-md rounded-4 p-4 mb-4 bg-white';
+        card.className = 'order-card-luxury mb-4';
         
+        const normCurrentStatus = getNormKey(order.status);
+        const currentIdx = stepsList.indexOf(normCurrentStatus);
+
         let timelineHTML = '';
-        order.timeline.forEach(step => {
-          const statusClass = step.completed ? 'completed' : (step.current ? 'current' : '');
-          timelineHTML += `
-            <div class="timeline-item ${statusClass}">
-              <div class="timeline-icon"><i class="bi ${step.completed ? 'bi-check' : 'bi-circle-fill'}"></i></div>
-              <h6 class="mb-0 text-dark fw-bold">${step.label}</h6>
-              <small class="text-muted">${step.timestamp}</small>
-            </div>
-          `;
-        });
+        if (order.timeline && Array.isArray(order.timeline)) {
+          order.timeline.forEach((step, idx) => {
+            const isCompleted = step.completed || (currentIdx !== -1 && idx <= currentIdx);
+            const isCurrent = step.current || (currentIdx !== -1 && idx === currentIdx);
+            const statusClass = isCompleted ? (isCurrent ? 'completed current' : 'completed') : '';
+
+            const iconClass = isCompleted ? 'bi-check-lg' : 'bi-circle-fill';
+            const stepKey = step.step || stepsList[idx] || "Pending";
+            const customMsg = statusMessagesMap[stepKey] || "";
+
+            let timestampText = "অপেক্ষমাণ";
+            if (idx === 0) {
+              const rawTime = (step.timestamp && !step.timestamp.includes("সম্পন্ন") && !step.timestamp.includes("অপেক্ষমাণ") && !step.timestamp.includes("পৌঁছেছে")) ? step.timestamp : (order.date || '');
+              timestampText = `${customMsg} ${rawTime ? '(' + rawTime + ')' : ''}`;
+            } else if (isCompleted) {
+              timestampText = (step.timestamp && !step.timestamp.includes("সম্পন্ন") && !step.timestamp.includes("অপেক্ষমাণ")) ? step.timestamp : customMsg;
+            }
+
+            timelineHTML += `
+              <div class="timeline-item ${statusClass}">
+                <div class="timeline-icon"><i class="bi ${iconClass}"></i></div>
+                <div class="timeline-item-title">${step.label}</div>
+                <div class="timeline-item-desc">${timestampText}</div>
+              </div>
+            `;
+          });
+        }
+
+        const advance = parseFloat(order.advancePaid) || 0;
+        const totalVal = parseFloat(order.total) || 0;
+        const due = parseFloat(order.dueAmount) !== undefined && order.dueAmount !== "" ? parseFloat(order.dueAmount) : (totalVal - advance);
+        const deliveryCharge = parseFloat(order.deliveryCharge) || 80;
+        const unitPrice = parseFloat(order.unitPrice) || (totalVal > deliveryCharge ? totalVal - deliveryCharge : 600);
+
+        let paymentBadge = '<span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-1.5 rounded-pill"><i class="bi bi-exclamation-circle me-1"></i>বকেয়া (Unpaid)</span>';
+        if (advance >= totalVal && totalVal > 0) {
+          paymentBadge = '<span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1.5 rounded-pill"><i class="bi bi-check-circle-fill me-1"></i>সম্পূর্ণ পরিশোধিত (Paid)</span>';
+        } else if (advance > 0) {
+          paymentBadge = `<span class="badge bg-warning-subtle text-dark border border-warning-subtle px-3 py-1.5 rounded-pill"><i class="bi bi-wallet2 me-1 text-warning"></i>এডভান্স ৳${advance} জমা</span>`;
+        }
 
         card.innerHTML = `
-          <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-3 mb-3">
+          <div class="order-card-header d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-              <span class="badge bg-primary-subtle text-primary fs-6 mb-1">ট্র্যাকিং আইডি: ${order.trackingId}</span>
-              <h5 class="fw-bold text-dark mb-0">${order.productName} (${order.variant})</h5>
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 font-monospace fs-6">
+                  <i class="bi bi-upc-scan me-1"></i> ID: ${order.trackingId}
+                </span>
+                ${order.orderId ? `<small class="text-muted">(${order.orderId})</small>` : ''}
+              </div>
+              <h4 class="fw-bold text-dark mb-0 fs-5">${order.productName} ${order.variant ? `<span class="text-muted fs-6 fw-normal">(${order.variant})</span>` : ''}</h4>
             </div>
-            <div class="text-end mt-2 mt-sm-0">
-              <span class="badge bg-success fs-6">স্ট্যাটাস: ${order.status}</span>
-              <div class="text-muted fs-6">মোট মূল্য: ৳${order.total}</div>
+            <div class="text-end">
+              <div class="status-badge-glow mb-1">
+                ${order.status}
+              </div>
+              <div class="mt-1">${paymentBadge}</div>
             </div>
           </div>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <p class="mb-1"><strong>কাস্টমার:</strong> ${order.customerName}</p>
-              <p class="mb-1"><strong>কুরিয়ার:</strong> ${order.courier}</p>
-              <p class="mb-0"><strong>কুরিয়ার ট্র্যাকিং নং:</strong> ${order.courierTrackingNo}</p>
-            </div>
-            <div class="col-md-6">
-              <h6 class="fw-bold mb-2">ট্র্যাকিং টাইমলাইন:</h6>
-              <div class="tracking-timeline">
-                ${timelineHTML}
+          <div class="p-4">
+            <div class="row g-4">
+              <div class="col-md-5">
+                <div class="detail-info-box h-100">
+                  <h6 class="fw-bold text-dark mb-3 pb-2 border-bottom"><i class="bi bi-info-circle text-primary me-2"></i>অর্ডারের বিবরণ ও হিসাব</h6>
+                  
+                  <div class="detail-info-item">
+                    <div class="detail-info-icon"><i class="bi bi-person-heart"></i></div>
+                    <div>
+                      <small class="text-muted d-block">প্রাপক কাস্টমার</small>
+                      <strong class="text-dark">${order.customerName || 'গ্রাহক'}</strong>
+                    </div>
+                  </div>
+
+                  <div class="detail-info-item">
+                    <div class="detail-info-icon"><i class="bi bi-truck-front"></i></div>
+                    <div>
+                      <small class="text-muted d-block">কুরিয়ার পার্টনার</small>
+                      <strong class="text-dark">${order.courier || 'Steadfast / Pathao'}</strong>
+                    </div>
+                  </div>
+
+                  <div class="detail-info-item">
+                    <div class="detail-info-icon"><i class="bi bi-box-seam"></i></div>
+                    <div>
+                      <small class="text-muted d-block">কুরিয়ার ট্র্যাকিং মেমো</small>
+                      <strong class="text-dark font-monospace">${order.courierTrackingNo || 'N/A'}</strong>
+                    </div>
+                  </div>
+
+                  <!-- Financial Breakdown Box -->
+                  <div class="mt-3 p-3 rounded-3 bg-white border border-light-subtle shadow-2xs">
+                    <div class="d-flex justify-content-between fs-6 text-secondary mb-1">
+                      <span>প্রোডাক্ট মূল্য:</span>
+                      <span>৳${unitPrice}</span>
+                    </div>
+                    <div class="d-flex justify-content-between fs-6 text-secondary mb-1">
+                      <span>ডেলিভারি চার্জ:</span>
+                      <span>৳${deliveryCharge}</span>
+                    </div>
+                    <div class="d-flex justify-content-between fs-6 fw-bold text-dark pt-2 border-top mb-1">
+                      <span>সর্বমোট মূল্য:</span>
+                      <span>৳${totalVal}</span>
+                    </div>
+                    ${advance > 0 ? `
+                    <div class="d-flex justify-content-between fs-6 text-success fw-medium mb-1">
+                      <span>💳 এডভান্স জমা:</span>
+                      <span>- ৳${advance}</span>
+                    </div>
+                    ` : ''}
+                    <div class="d-flex justify-content-between fs-6 fw-bold text-danger pt-2 border-top mt-1">
+                      <span>🟢 কুরিয়ার ডেলিভারিতে দেয়:</span>
+                      <span class="fs-5">৳${due > 0 ? due : 0}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="ps-md-2">
+                  <h6 class="fw-bold text-dark mb-3 pb-2 border-bottom"><i class="bi bi-signpost-split text-danger me-2"></i>লাইভ ট্র্যাকিং টাইমলাইন</h6>
+                  <div class="tracking-timeline">
+                    ${timelineHTML}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   }
 
-  // 6. Quick Order Modal Logic & Pre-filled WhatsApp Generator
+  // 6. Quick Order Modal Logic & Live Price Sync from Google Sheets
   const orderModal = document.getElementById('orderModal');
   const orderForm = document.getElementById('quickOrderForm');
   const selectedProductInput = document.getElementById('modalProductName');
@@ -252,24 +252,149 @@ document.addEventListener('DOMContentLoaded', () => {
       const button = event.relatedTarget;
       if (button) {
         const productName = button.getAttribute('data-product-name') || 'সাধারণ প্রশ্ন / কাস্টম অর্ডার';
+        const productPrice = button.getAttribute('data-product-price') || '600';
         if (selectedProductInput) {
           selectedProductInput.value = productName;
+          selectedProductInput.dataset.price = productPrice;
         }
       }
     });
   }
 
+  // Live Price Sync from Google Sheets API
+  async function syncLiveProductsFromSheet() {
+    try {
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbyWD8TMbk4tO5EYjikoKvDOhlouZqCnWInjFQMYc-xNFYbQ2wM3zCnItmSo-dteArfpMQ/exec?action=getProducts";
+      const res = await fetch(scriptUrl);
+      const data = await res.json();
+      if (data && data.status === "success" && Array.isArray(data.products)) {
+        window.dremoyLiveProducts = data.products;
+
+        const formatPrice = (val) => {
+          const num = Number(val);
+          if (isNaN(num)) return `৳ ${val}`;
+          return `৳ ${num.toLocaleString('bn-BD')}`;
+        };
+
+        data.products.forEach(p => {
+          if (!p.name) return;
+          const cleanName = String(p.name).trim().toLowerCase();
+
+          // 1. Update buttons & cards matching data-product-name
+          const btns = document.querySelectorAll('[data-product-name]');
+          btns.forEach(btn => {
+            const btnName = String(btn.getAttribute('data-product-name')).trim().toLowerCase();
+            if (btnName === cleanName && p.price) {
+              btn.setAttribute('data-product-price', p.price);
+              
+              const container = btn.closest('.product-card') || btn.closest('.product-info') || btn.closest('.col-lg-6') || btn.closest('.row');
+              if (container) {
+                const priceEl = container.querySelector('.product-price, .price-current, .fs-2.text-primary, .fs-3.fw-bold, .text-primary.fw-bold');
+                if (priceEl) {
+                  priceEl.innerHTML = formatPrice(p.price);
+                }
+              }
+            }
+          });
+
+          // 2. Update Product Detail Pages (matching H1 title text)
+          const h1List = document.querySelectorAll('h1');
+          h1List.forEach(h1 => {
+            if (String(h1.textContent).trim().toLowerCase() === cleanName && p.price) {
+              const detailContainer = h1.closest('.col-lg-6') || h1.parentElement;
+              if (detailContainer) {
+                const detailPriceEl = detailContainer.querySelector('.fs-2.text-primary, .text-primary, .product-price');
+                if (detailPriceEl) {
+                  detailPriceEl.innerHTML = formatPrice(p.price);
+                }
+              }
+            }
+          });
+        });
+      }
+    } catch (e) {
+      console.warn("Live product price sync fallback:", e);
+    }
+  }
+
+  syncLiveProductsFromSheet();
+
   if (orderForm) {
-    orderForm.addEventListener('submit', (e) => {
+    orderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const submitBtn = orderForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'অর্ডার সম্পূর্ণ করুন';
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>প্রসেস হচ্ছে...';
+      }
+
+      // Pre-open WhatsApp tab immediately inside user interaction context (prevents popup blocker)
+      const waWindow = window.open('about:blank', '_blank');
+
       const product = document.getElementById('modalProductName').value;
       const name = document.getElementById('customerName').value.trim();
       const phone = document.getElementById('customerPhone').value.trim();
       const address = document.getElementById('customerAddress').value.trim();
-      const note = document.getElementById('customerNote').value.trim();
+      const district = document.getElementById('customerDistrict') ? document.getElementById('customerDistrict').value : 'Mymensingh';
+      const quantity = document.getElementById('customerQuantity') ? parseInt(document.getElementById('customerQuantity').value) || 1 : 1;
+      const paymentMethod = document.getElementById('customerPayment') ? document.getElementById('customerPayment').value : 'Cash on Delivery';
+      const note = document.getElementById('customerNote') ? document.getElementById('customerNote').value.trim() : '';
+
+      let unitPrice = 600;
+      if (selectedProductInput && selectedProductInput.dataset.price) {
+        unitPrice = parseFloat(selectedProductInput.dataset.price) || 600;
+      } else if (window.dremoyLiveProducts && Array.isArray(window.dremoyLiveProducts)) {
+        const found = window.dremoyLiveProducts.find(p => p.name && p.name.trim() === product.trim());
+        if (found && found.price) unitPrice = parseFloat(found.price) || 600;
+      }
+
+      const deliveryCharge = (district && district.toLowerCase().includes('outside')) ? 120 : 60;
+
+      let trackingId = '';
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+      try {
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbyWD8TMbk4tO5EYjikoKvDOhlouZqCnWInjFQMYc-xNFYbQ2wM3zCnItmSo-dteArfpMQ/exec";
+        const res = await fetch(scriptUrl, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          signal: controller.signal,
+          body: JSON.stringify({
+            action: "createOrder",
+            data: {
+              name: name,
+              phone: phone,
+              address: address,
+              district: district,
+              productName: product,
+              quantity: quantity,
+              unitPrice: unitPrice,
+              deliveryCharge: deliveryCharge,
+              paymentMethod: paymentMethod,
+              advancePaid: 0,
+              note: note
+            }
+          })
+        });
+        clearTimeout(timeoutId);
+        const data = await res.json();
+        if (data && data.status === "success" && data.trackingId) {
+          trackingId = data.trackingId;
+        }
+      } catch (err) {
+        console.warn("Google Sheet Sync timeout/warning:", err);
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       // Format WhatsApp message
       let message = `হ্যালো Dremoy Store! 👋\nআমি একটি অর্ডার করতে চাই:\n\n📌 *প্রোডাক্ট:* ${product}\n👤 *নাম:* ${name}\n📞 *ফোন:* ${phone}\n🏠 *ঠিকানা:* ${address}`;
+      if (trackingId) {
+        message += `\n🆔 *ট্র্যাকিং আইডি:* ${trackingId}`;
+      }
       if (note) {
         message += `\n💌 *বিশেষ মেসেজ/উপহার নোট:* ${note}`;
       }
@@ -277,8 +402,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/8801622536026?text=${encodedMessage}`;
 
-      // Open WhatsApp in new tab
-      window.open(whatsappUrl, '_blank');
+      // Redirect pre-opened tab to WhatsApp URL
+      if (waWindow) {
+        waWindow.location.href = whatsappUrl;
+      } else {
+        window.location.href = whatsappUrl;
+      }
+
+      // Reset submit button
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
 
       // Close modal
       const modalInstance = bootstrap.Modal.getInstance(orderModal);
@@ -286,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalInstance.hide();
       }
 
-      showToast('আপনার অর্ডার মেসেজ তৈরি হয়েছে! হোয়াটসঅ্যাপে রূপান্তর করা হচ্ছে...');
+      showToast(trackingId ? `আপনার অর্ডার গুগল শীটে যুক্ত হয়েছে! ট্র্যাকিং আইডি: ${trackingId}` : 'আপনার অর্ডার হোয়াটসঅ্যাপে পাঠানো হচ্ছে...');
     });
   }
 
@@ -720,21 +855,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const previewMessage = document.getElementById('previewMessage');
   const previewSender = document.getElementById('previewSender');
 
-  if (giftRecipientInput && giftMessageInput && giftSenderInput && previewRecipient && previewMessage && previewSender) {
-    giftRecipientInput.addEventListener('input', (e) => {
-      const val = e.target.value.trim();
-      previewRecipient.textContent = val ? `${val},` : 'প্রিয় প্রিয়জন,';
+  if (giftRecipientInput || giftMessageInput || giftSenderInput) {
+    const updateNotePreview = () => {
+      if (giftRecipientInput && previewRecipient) {
+        const val = giftRecipientInput.value.trim();
+        previewRecipient.textContent = val ? `${val},` : 'প্রিয় প্রিয়জন,';
+      }
+
+      if (giftMessageInput && previewMessage) {
+        const val = giftMessageInput.value.trim();
+        if (val) {
+          // Remove existing outer quotes if user typed them to avoid double quotes
+          const cleanVal = val.replace(/^["'“‘]+|["'”’]+$/g, '');
+          previewMessage.textContent = `"${cleanVal}"`;
+        } else {
+          previewMessage.textContent = '"এখানে আপনার বিশেষ মেসেজটি সরাসরি ফুটে উঠবে..."';
+        }
+      }
+
+      if (giftSenderInput && previewSender) {
+        const val = giftSenderInput.value.trim();
+        previewSender.textContent = val ? `ইতি — ${val}` : 'ইতি — আপনার নাম';
+      }
+    };
+
+    ['input', 'keyup', 'change', 'paste'].forEach(eventType => {
+      if (giftRecipientInput) giftRecipientInput.addEventListener(eventType, updateNotePreview);
+      if (giftMessageInput) giftMessageInput.addEventListener(eventType, updateNotePreview);
+      if (giftSenderInput) giftSenderInput.addEventListener(eventType, updateNotePreview);
     });
 
-    giftMessageInput.addEventListener('input', (e) => {
-      const val = e.target.value.trim();
-      previewMessage.textContent = val ? `"${val}"` : '"এখানে আপনার বিশেষ মেসেজটি সরাসরি ফুটে উঠবে..."';
-    });
-
-    giftSenderInput.addEventListener('input', (e) => {
-      const val = e.target.value.trim();
-      previewSender.textContent = val ? `ইতি — ${val}` : 'ইতি — আপনার নাম';
-    });
+    // Run initial sync on load
+    updateNotePreview();
   }
 
   // 12. Review Section: Filter Tabs & Live Search Logic
@@ -869,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 14. Lifestyle & Shop The Look Gallery Filter Logic
   const galleryFilterBtns = document.querySelectorAll('[data-gallery-filter]');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryFilterGridItems = document.querySelectorAll('.gallery-item');
 
   galleryFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -877,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
 
       const filter = btn.getAttribute('data-gallery-filter');
-      galleryItems.forEach(item => {
+      galleryFilterGridItems.forEach(item => {
         const cat = item.getAttribute('data-category');
         if (filter === 'all' || filter === cat) {
           item.style.display = 'block';

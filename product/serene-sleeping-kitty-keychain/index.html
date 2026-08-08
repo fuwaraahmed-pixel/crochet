@@ -74,7 +74,7 @@
         <div class="col-lg-6">
           <div class="product-gallery-main position-relative rounded-4 overflow-hidden shadow-sm border border-light">
             <span class="product-badge position-absolute top-0 start-0 m-3 z-2">পছন্দের তালিকায় ১ নম্বর</span>
-            <img id="mainProductImg" src="../../assets/images/sleeping-cat-keychain.jpeg" alt="Serene Sleeping Kitty Keychain" class="w-100 object-fit-cover" style="height: 460px;">
+            <img id="mainProductImg" src="../../assets/images/sleeping-cat-keychain.webp" alt="Serene Sleeping Kitty Keychain" class="w-100 object-fit-cover" style="height: 460px;">
           </div>
         </div>
 
@@ -166,13 +166,33 @@
               <label for="customerAddress" class="form-label fw-semibold">পূর্ণাঙ্গ ঠিকানা *</label>
               <textarea class="form-control form-control-custom" id="customerAddress" rows="2" placeholder="বাড়ি/রোড নম্বর, এলাকা, থানা ও জেলা" required></textarea>
             </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label for="customerDistrict" class="form-label fw-semibold">ডেলিভারি এলাকা *</label>
+                <select class="form-select form-control-custom" id="customerDistrict" required>
+                  <option value="Mymensingh" selected>ময়মনসিংহ (৬০ টাকা)</option>
+                  <option value="Outside Mymensingh">ময়মনসিংহের বাইরে (১২০ টাকা)</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="customerQuantity" class="form-label fw-semibold">পরিমাণ *</label>
+                <input type="number" class="form-control form-control-custom" id="customerQuantity" value="1" min="1" max="10" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="customerPayment" class="form-label fw-semibold">পেমেন্ট মাধ্যম</label>
+              <select class="form-select form-control-custom" id="customerPayment">
+                <option value="Cash on Delivery" selected>ক্যাশ অন ডেলিভারি (COD)</option>
+                <option value="bKash / Nagad">বিকাশ / নগদ (অ্যাডভান্স)</option>
+              </select>
+            </div>
             <div class="mb-3">
               <label for="customerNote" class="form-label fw-semibold">বিশেষ উপহার মেসেজ (ঐচ্ছিক)</label>
               <input type="text" class="form-control form-control-custom" id="customerNote" placeholder="গিফট কার্ডে কি লেখা থাকবে?">
             </div>
             <div class="d-grid mt-4">
-              <button type="submit" class="btn btn-primary-custom py-3 fs-6">
-                হোয়াটসঅ্যাপে অর্ডার পাঠান <i class="bi bi-whatsapp ms-1"></i>
+              <button type="submit" id="orderSubmitBtn" class="btn btn-primary-custom py-3 fs-6">
+                অর্ডার নিশ্চিত করুন <i class="bi bi-bag-check ms-1"></i>
               </button>
             </div>
           </form>

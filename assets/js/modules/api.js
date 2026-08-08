@@ -3,8 +3,8 @@
  * Abstracts network calls to Google Apps Script Web App Endpoint.
  */
 
-// Replace with your Google Apps Script Web App Deployment URL
-const APPS_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+// Google Apps Script Web App Deployment URL
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWD8TMbk4tO5EYjikoKvDOhlouZqCnWInjFQMYc-xNFYbQ2wM3zCnItmSo-dteArfpMQ/exec";
 
 export const ApiService = {
   /**

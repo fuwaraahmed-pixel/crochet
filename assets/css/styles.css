@@ -4236,12 +4236,14 @@ body::before {
 
 .studio-form-desc {
   font-family: var(--font-bangla);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #5C4A40;
 }
 
 .luxury-label {
   font-family: var(--font-bangla);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #4A3A33;
 }
@@ -4251,7 +4253,8 @@ body::before {
   border-radius: 14px;
   padding: 12px 16px;
   font-family: var(--font-bangla);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
   background-color: #FAF6F3;
   transition: all 0.25s ease;
 }
@@ -4299,8 +4302,9 @@ body::before {
 
 .parchment-inner {
   border: 1px dashed rgba(200, 157, 108, 0.5);
-  padding: 24px 20px;
-  border-radius: 12px;
+  padding: 26px 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .parchment-brand-header {
@@ -4329,26 +4333,32 @@ body::before {
 
 .parchment-recipient {
   font-family: var(--font-bangla);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  color: #382A23;
-  margin-bottom: 14px;
+  color: #2D221C;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
 }
 
 .parchment-message {
-  font-family: 'Playfair Display', Georgia, var(--font-bangla);
-  font-size: 1.12rem;
-  line-height: 1.8;
-  color: #4A3A31;
-  font-style: italic;
+  font-family: var(--font-bangla), 'Hind Siliguri', 'Playfair Display', serif;
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: #3D2B1F;
+  font-weight: 500;
   white-space: pre-wrap;
   word-break: break-word;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  padding: 14px 18px;
+  background: rgba(217, 83, 56, 0.03);
+  border-left: 3px solid #D95338;
+  border-radius: 0 12px 12px 0;
+  letter-spacing: 0.015em;
 }
 
 .parchment-sender {
   font-family: var(--font-bangla);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   text-align: right;
   color: #D95338;
@@ -4799,6 +4809,264 @@ body::before {
   font-size: 0.95rem;
   line-height: 1.7;
 }
+
+/* ==========================================================================
+   Premium Luxury Brand Story & Video Showcase Section
+   ========================================================================== */
+.story-luxury-section {
+  background: linear-gradient(180deg, #FAF7F2 0%, #F5ECE0 50%, #FAF7F2 100%);
+  position: relative;
+}
+
+.story-glow-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.story-glow-sphere.sphere-1 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(217, 83, 56, 0.25) 0%, rgba(250, 247, 242, 0) 70%);
+  top: 10%;
+  left: -5%;
+}
+
+.story-glow-sphere.sphere-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(248, 123, 136, 0.22) 0%, rgba(250, 247, 242, 0) 70%);
+  bottom: 5%;
+  right: -5%;
+}
+
+.story-luxury-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(217, 83, 56, 0.18) !important;
+  box-shadow: 0 25px 60px rgba(184, 63, 37, 0.08), 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.5s ease;
+}
+
+.story-luxury-card:hover {
+  box-shadow: 0 35px 75px rgba(184, 63, 37, 0.14);
+  border-color: rgba(217, 83, 56, 0.35) !important;
+}
+
+.story-luxury-tagline {
+  background: linear-gradient(135deg, #FFF0ED 0%, #FFE5E0 100%);
+  color: #B83F25;
+  border: 1px solid rgba(217, 83, 56, 0.2);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.animated-pulse {
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+.story-luxury-title {
+  color: #1E1E1E;
+  font-size: 2.1rem;
+  line-height: 1.35;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #D95338 0%, #B83F25 50%, #8A2510 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.story-luxury-quote {
+  background: rgba(250, 247, 242, 0.9);
+  border-left: 4px solid #D95338;
+  border-top: 1px solid rgba(217, 83, 56, 0.08);
+  border-right: 1px solid rgba(217, 83, 56, 0.08);
+  border-bottom: 1px solid rgba(217, 83, 56, 0.08);
+}
+
+.quote-bg-icon {
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+  font-size: 3.5rem;
+  color: rgba(217, 83, 56, 0.08);
+  pointer-events: none;
+}
+
+.story-editorial-desc {
+  font-size: 1.05rem;
+  color: #333333;
+  line-height: 1.85;
+}
+
+.story-highlight-mark {
+  background: linear-gradient(120deg, rgba(217, 83, 56, 0.15) 0%, rgba(248, 123, 136, 0.25) 100%);
+  color: #B83F25;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.trust-pill {
+  background: #FFFFFF;
+  border: 1px solid rgba(30, 30, 30, 0.08);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #444444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.story-video-frame {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15), 0 0 30px rgba(217, 83, 56, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-video-frame:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.2), 0 0 40px rgba(217, 83, 56, 0.25);
+}
+
+.video-live-badge {
+  background: rgba(18, 18, 18, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #22C55E;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px #22C55E;
+}
+
+/* ==========================================================================
+   Infinite Luxury Marquee Tracker (Luxury Moving Ticker Ribbon)
+   ========================================================================== */
+.luxury-marquee-ribbon {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, #fff4f0 0%, #fdf0e6 25%, #fff7f2 50%, #fdf0e6 75%, #fff4f0 100%);
+  border-top: 1px solid rgba(212, 163, 89, 0.35);
+  border-bottom: 1px solid rgba(212, 163, 89, 0.35);
+  padding: 13px 0;
+  position: relative;
+  box-shadow: 0 4px 18px rgba(217, 83, 56, 0.06), inset 0 0 25px rgba(255, 215, 175, 0.2);
+  z-index: 10;
+}
+
+/* Golden Fade Gradients at Left and Right edges */
+.luxury-marquee-ribbon::before,
+.luxury-marquee-ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.luxury-marquee-ribbon::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 244, 240, 1), rgba(255, 244, 240, 0));
+}
+
+.luxury-marquee-ribbon::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 244, 240, 1), rgba(255, 244, 240, 0));
+}
+
+.luxury-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: luxuryMarqueeScroll 26s linear infinite;
+  will-change: transform;
+}
+
+.luxury-marquee-ribbon:hover .luxury-marquee-track {
+  animation-play-state: paused;
+}
+
+.luxury-marquee-content {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.marquee-item {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #3b2824;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.marquee-item:hover {
+  color: #D95338;
+}
+
+.marquee-item .gold-sparkle {
+  color: #D95338;
+  font-size: 1.15rem;
+  filter: drop-shadow(0 2px 4px rgba(217, 83, 56, 0.22));
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.marquee-item:hover .gold-sparkle {
+  transform: scale(1.2) rotate(6deg);
+  color: #B83F25;
+}
+
+.marquee-sep {
+  color: #D4A359;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  padding: 0 4px;
+  user-select: none;
+}
+
+@keyframes luxuryMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .luxury-marquee-ribbon {
+    padding: 10px 0;
+  }
+  .marquee-item {
+    font-size: 0.86rem;
+    gap: 6px;
+  }
+  .luxury-marquee-content {
+    gap: 1.35rem;
+    padding-right: 1.35rem;
+  }
+}
+
 
 
 
